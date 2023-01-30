@@ -1,0 +1,21 @@
+<article>
+  <table role="grid">
+    <thead>
+      <tr>
+        <th>Opération</th>
+        <th>Résultat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let n of tableMultiplication$ | async; index as i">
+        <td>{{ i + 1 }} x {{ nombre$ | async }}</td>
+        <td>{{ n }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!--
+TODO: afficher les statistiques de révisions pour chaque opération de calcul,
+  lister le nombre de bonnes réponses, le nombre de mauvaises réponses, le temps
+  moyen pour obtenir la bonne réponse, le meilleur temps pour la bonne réponse,
+  le pire temps de réponse.
+--></article>

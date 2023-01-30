@@ -1,0 +1,32 @@
+<article>
+  <form (submit)="clicValiderReponse()">
+    <button type="button" (click)="clicQuestionSuivante()">
+      Question Suivante !
+    </button>
+    <br />
+
+    <div *ngIf="afficherLaDerniereQuestion$ | async">
+      <p class="question">
+        Combien font {{ (question$ | async)?.nombre }} fois
+        {{ (question$ | async)?.operande }} ?
+      </p>
+
+      <label for="reponse">Ta réponse : </label
+      ><input name="reponse" [(ngModel)]="reponse" id="reponse" type="number" />
+      <input name="submit" type="submit" value="Valider (ou touche entrée)" />
+    </div>
+    <h2 *ngIf="afficherFlashMessageBonneReponse$ | async" class="correcte">
+      ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
+    </h2>
+    <h2 *ngIf="afficherFlashMessageMauvaiseReponse$ | async" class="incorrecte">
+      🙀 MAUVAISE REPONSE, ESSAIES ENCORE !!<!-- TODO varier le message dans une liste random -->
+    </h2>
+  </form>
+  <!--
+TODO afficher les statistiques en cours. 
+  pour chaque question : le temps entre
+  l'affichage de la question et chaque proposition de solution ; jusqu'à ce que
+  la solution soit la bonne. Ne pas utiliser de setInterval ou setTimeout ;
+  enregistrer le temps actuel au moment où l'utilisateur VALIDE sa saisie (ENTER
+  ou bouton pour valider)
+--></article>

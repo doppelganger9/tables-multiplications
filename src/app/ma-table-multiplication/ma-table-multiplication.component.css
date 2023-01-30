@@ -1,0 +1,38 @@
+/**
+table {
+  border: 4px solid black;
+  font-size: x-large;
+  margin: 50px auto;
+  padding: 5px;
+}
+thead {
+  border: 1px solid grey;
+  background: grey;
+  color: white;
+}
+th {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+tbody {
+  border: 1px solid grey;
+  background: lightcyan;
+}
+td {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+**/
+table {
+  font-size: x-large;
+}
+th {
+  text-align: center;
+}
+td {
+  text-align: center;
+}
