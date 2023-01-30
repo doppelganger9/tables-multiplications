@@ -9,6 +9,7 @@
     "build": "ng build",
     "test": "npx jest",
     "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,html}' --quiet --fix",
+    "lint:css": "npx stylelint '**/*.css'",
     "format": "npx prettier 'src/**/*.{js,jsx,ts,tsx,html}' --write",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
@@ -55,6 +56,9 @@
     "jest-preset-angular": "^12.2.6",
     "local-cypress": "1.2.6",
     "prettier": "2.8.3",
+    "stylelint": "14.16.1",
+    "stylelint-config-prettier": "9.0.4",
+    "stylelint-config-standard": "29.0.0",
     "ts-jest": "28.0.8",
     "typescript": "~4.8.0"
   }

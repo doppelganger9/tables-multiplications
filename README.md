@@ -13,7 +13,9 @@ Pour aller plus loin, il y a aussi ces scripts NPM:
 
 - `npm run test` ou `npm t` : lance les tests unitaires Jest
 - `npm run e2e` : lance les tests End-to-End Cypress
-- `npm run lint`: KO !
+- `npm run lint`: vérifie le format du code JS/TS/HTML et corrige si possible avec ESLint
+- `npm run format`: formatte le code avec Prettier
+- `npm run lint:css`: vérifie le code CSS
 - `npm run start`: démarre l'application Angular (et non le index static qui inclut un web-component, petite subtilité).
 - `npm run build`: construit l'app Angular (il y a un `wc:build` dédié pour construire l'application en mode web-component).
 
