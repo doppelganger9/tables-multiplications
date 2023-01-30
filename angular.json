@@ -64,37 +64,60 @@
             "browserTarget": "tables-multiplications:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "styles.css"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "devServerTarget": "tables-multiplications:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tables-multiplications:serve:production"
+            }
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "tables-multiplications:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "tables-multiplications:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "tables-multiplications:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tables-multiplications:serve:production"
+            }
           }
         }
       }
     }
   },
-  "defaultProject": "tables-multiplications"
+  "defaultProject": "tables-multiplications",
+  "cli": {
+    "analytics": "66918b72-84c9-4bfb-8cda-1513a58f0961",
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
+  }
 }

@@ -2,6 +2,21 @@
 
 Petit projet perso pour donner à mes enfants un outils d'apprentissage et révision des tables de multiplications.
 
+## Utilisation
+
+- cloner ce repository
+- `npm install`
+- `npm wc:serve`
+- ouvrir http://127.0.0.1:8080
+
+Pour aller plus loin, il y a aussi ces scripts NPM:
+
+- `npm run test` ou `npm t` : lance les tests unitaires Jest
+- `npm run e2e` : lance les tests End-to-End Cypress
+- `npm run lint`: KO !
+- `npm run start`: démarre l'application Angular (et non le index static qui inclut un web-component, petite subtilité).
+- `npm run build`: construit l'app Angular (il y a un `wc:build` dédié pour construire l'application en mode web-component).
+
 ## Suggestions d'amélioration
 
 - Faire des questions sur toutes les tables
