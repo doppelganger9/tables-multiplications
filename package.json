@@ -16,9 +16,9 @@
     "cypress:run": "cypress run",
     "wc:build": "npm run wc:build-task && npm run wc:package-task",
     "wc:build-task": "ng build tables-multiplications --output-hashing=none",
-    "wc:package-task": "cat ./dist/tables-multiplications/{polyfills,runtime,main}.js > ./dist/table-multiplication-app.js",
+    "wc:package-task": "node ./build/concat.mjs",
     "wc:copy-static": "cp ./dist/table-multiplication-app.js ./static/",
-    "wc:serve": "npm run wc:build && && npm run wc:copy-static && npx http-server static"
+    "wc:serve": "npm run wc:build && npm run wc:copy-static && npx http-server static"
   },
   "dependencies": {
     "@angular/animations": "^15.1.2",
