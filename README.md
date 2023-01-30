@@ -1,5 +1,7 @@
 # Tables de Multiplications
 
+[![Deploy static content to Pages](https://github.com/doppelganger9/tables-multiplications/actions/workflows/static.yml/badge.svg)](https://github.com/doppelganger9/tables-multiplications/actions/workflows/static.yml)
+
 Petit projet perso pour donner à mes enfants un outils d'apprentissage et révision des tables de multiplications.
 
 ## Utilisation
