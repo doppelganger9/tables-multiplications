@@ -1,6 +1,6 @@
 # Tables de Multiplications
 
-[![Deploy static content to Pages](https://github.com/doppelganger9/tables-multiplications/actions/workflows/static.yml/badge.svg)](https://github.com/doppelganger9/tables-multiplications/actions/workflows/static.yml)
+[![Deploy static content to Pages](https://github.com/doppelganger9/tables-multiplications/actions/workflows/static.yml/badge.svg)](https://github.com/doppelganger9/tables-multiplications/actions/workflows/static.yml) [![Coverage Status](https://coveralls.io/repos/github/doppelganger9/tables-multiplications/badge.svg?branch=main)](https://coveralls.io/github/doppelganger9/tables-multiplications?branch=main)
 
 Petit projet perso pour donner à mes enfants un outils d'apprentissage et révision des tables de multiplications.
 
