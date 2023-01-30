@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { EqualsPipe } from '../equals.pipe';
+import { Observable, map } from 'rxjs';
 import { Action } from '../model';
+import { EqualsPipe } from '../equals.pipe';
 import { StateService } from '../store/state.service';
 
 interface Option<T> {
@@ -15,13 +15,13 @@ interface Option<T> {
  * et une action (afficher, réviser)
  */
 @Component({
-  selector: 'mon-menu',
-  templateUrl: './mon-menu.component.html',
-  styleUrls: ['./mon-menu.component.css'],
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css'],
   providers: [EqualsPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MonMenuComponent implements OnInit {
+export class MenuComponent implements OnInit {
   nombreChoisi$: Observable<number>;
   actionChoisie$: Observable<Action>;
   optionNombres$: Observable<Array<Option<number>>>;
@@ -59,7 +59,7 @@ function toutesLesOptionsDeChoixDeNombre(
     res.push({
       selected: i === nombreActuel,
       value: i,
-      label: `${i}`,
+      label: `${i}`
     } as Option<number>);
   }
   return res;
@@ -73,7 +73,7 @@ function toutesLesOptionsDeChoixDAction(
       ({
         selected: action === actionActuelle,
         value: action,
-        label: `${action}`,
+        label: `${action}`
       } as Option<Action>)
   );
 }

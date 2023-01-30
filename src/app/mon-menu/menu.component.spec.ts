@@ -1,6 +1,5 @@
-describe(`mon-menu.component`, () => {
-
+describe(`menu.component`, () => {
   it(`it works`, () => {
     expect(true).toBeTruthy();
-  })
+  });
 });

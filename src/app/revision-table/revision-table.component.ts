@@ -1,22 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
+  Observable,
+  combineLatest,
+  concat,
   filter,
   map,
-  Observable,
-  tap,
-  switchMap,
-  timer,
-  concat,
   of,
-  combineLatest,
+  switchMap,
+  timer
 } from 'rxjs';
 import { Question } from '../model';
 import { StateService } from '../store/state.service';
 
 @Component({
-  selector: 'revision-table',
+  selector: 'app-revision-table',
   templateUrl: './revision-table.component.html',
-  styleUrls: ['./revision-table.component.css'],
+  styleUrls: ['./revision-table.component.css']
 })
 export class RevisionTableComponent implements OnInit {
   @Input()
@@ -39,7 +38,7 @@ export class RevisionTableComponent implements OnInit {
 
     this.afficherLaDerniereQuestion$ = combineLatest([
       this.question$,
-      this.nombre$,
+      this.nombre$
     ]).pipe(
       map(
         ([question, nombre]) =>

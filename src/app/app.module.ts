@@ -1,32 +1,35 @@
-import { Injector, NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { TablesMultiplicationsAppComponent } from './app.component';
-import { MonMenuComponent } from './mon-menu/mon-menu.component';
-import { MaTableMultiplicationComponent } from './ma-table-multiplication/ma-table-multiplication.component';
 import { EqualsPipe } from './equals.pipe';
+import { FormsModule } from '@angular/forms';
+import { MenuComponent } from './mon-menu/menu.component';
 import { RevisionTableComponent } from './revision-table/revision-table.component';
 import { StateService } from './store/state.service';
+import { TableMultiplicationComponent } from './ma-table-multiplication/table-multiplication.component';
+import { TablesMultiplicationsAppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
   declarations: [
     TablesMultiplicationsAppComponent,
-    MonMenuComponent,
-    MaTableMultiplicationComponent,
+    MenuComponent,
+    TableMultiplicationComponent,
     EqualsPipe,
-    RevisionTableComponent,
+    RevisionTableComponent
   ],
   providers: [StateService],
-  entryComponents: [TablesMultiplicationsAppComponent],
+  entryComponents: [TablesMultiplicationsAppComponent]
 })
-export class TablesMultiplicationsAppModule {
+export class TablesMultiplicationsAppModule implements DoBootstrap {
   constructor(private injector: Injector) {
     const myElement = createCustomElement(TablesMultiplicationsAppComponent, {
-      injector,
+      injector
     });
     customElements.define('tables-multiplications-app', myElement);
   }
-  ngDoBootstrap() {}
+  ngDoBootstrap(appRef: ApplicationRef) {
+    // TODO quelque chose à faire ici ?
+    console.log(appRef);
+  }
 }

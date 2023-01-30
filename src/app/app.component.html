@@ -1,8 +1,10 @@
 <h1>Les tables de multiplication</h1>
-<mon-menu></mon-menu>
+<app-menu></app-menu>
 <ng-container *ngIf="modeAffichage$ | async; else modeRevision">
-  <ma-table-multiplication [nombre$]="nombreChoisi$"></ma-table-multiplication>
+  <app-table-multiplication
+    [nombre$]="nombreChoisi$"
+  ></app-table-multiplication>
 </ng-container>
 <ng-template #modeRevision>
-  <revision-table [nombre$]="nombreChoisi$"></revision-table>
+  <app-revision-table [nombre$]="nombreChoisi$"></app-revision-table>
 </ng-template>

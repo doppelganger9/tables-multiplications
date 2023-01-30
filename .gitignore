@@ -4,3 +4,4 @@ out-tsc/
 coverage/
 .angular/
 static/table-multiplication-app.js
+cypress/videos/

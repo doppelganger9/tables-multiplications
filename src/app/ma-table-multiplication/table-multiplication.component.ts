@@ -2,25 +2,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges,
-  OnInit,
+  OnChanges
 } from '@angular/core';
 import { Observable, of, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'ma-table-multiplication',
-  templateUrl: './ma-table-multiplication.component.html',
-  styleUrls: ['./ma-table-multiplication.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-table-multiplication',
+  templateUrl: './table-multiplication.component.html',
+  styleUrls: ['./table-multiplication.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MaTableMultiplicationComponent implements OnInit, OnChanges {
+export class TableMultiplicationComponent implements OnChanges {
   @Input()
   nombre$: Observable<number>;
   tableMultiplication$: Observable<Array<number>>;
-
-  constructor() {}
-
-  ngOnInit() {}
 
   ngOnChanges() {
     this.tableMultiplication$ = this.nombre$.pipe(

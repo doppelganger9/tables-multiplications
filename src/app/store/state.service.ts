@@ -1,14 +1,6 @@
-import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  last,
-  map,
-  Observable,
-  Subject,
-  takeLast,
-  tap,
-} from 'rxjs';
 import { Action, Question, Reponse, StatistiqueReponses } from '../model';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 /**
  * L'idée est de stocker ici l'état de l'app sans avoir à dégainer
@@ -103,7 +95,7 @@ export class StateService {
       operande,
       finie: false,
       total: nombre * operande,
-      dateDebut: new Date(),
+      dateDebut: new Date()
     } as Question;
     // émettre
     this.questions$.next([...questions.map(finirLaQuestion), questionGeneree]);
@@ -135,7 +127,7 @@ export class StateService {
           moy: 0,
           reponsesCorrectesSurLEnsemble: 0,
           vuesSurLEnsemble: 0,
-          reponses: [],
+          reponses: []
         } as StatistiqueReponses);
         stats.forEach((stat: StatistiqueReponses, index) => {
           stat.reponses = reponseByNombre[index + 1];
@@ -200,7 +192,7 @@ export class StateService {
       operande: lastQuestion.operande,
       reponse,
       correcte,
-      tempsMillisecondes,
+      tempsMillisecondes
     } as Reponse;
 
     // mise à jour store interne

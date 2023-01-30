@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Action } from './model';
 import { StateService } from './store/state.service';
 
@@ -8,10 +8,10 @@ import { StateService } from './store/state.service';
  * appelant les services.
  */
 @Component({
-  selector: 'my-app',
+  selector: 'app-shell',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TablesMultiplicationsAppComponent implements OnInit {
   nombreChoisi$: Observable<number>;
