@@ -1,4 +1,11 @@
 import 'jest-preset-angular';
+import 'zone.js';
+import 'zone.js/testing';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting
+} from '@angular/platform-browser-dynamic/testing';
+import { getTestBed } from '@angular/core/testing';
 
 Object.defineProperty(window, 'CSS', { value: null });
 Object.defineProperty(window, 'getComputedStyle', {
@@ -21,3 +28,14 @@ Object.defineProperty(document.body.style, 'transform', {
     };
   }
 });
+
+// to avoid too much verbose errors from Zone.js
+Error.stackTraceLimit = 2;
+
+getTestBed().initTestEnvironment(
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting(),
+  {
+    teardown: { destroyAfterEach: true }
+  }
+);
