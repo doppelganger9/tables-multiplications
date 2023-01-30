@@ -50,7 +50,7 @@ jobs:
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@1.1.3
         with:
-          github-token: ${{ secrets.COVERALLS_REPO_SECRET }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./coverage/table-multiplication/lcov.info
       - name: copy static assets
         run: npm run wc:copy-static
