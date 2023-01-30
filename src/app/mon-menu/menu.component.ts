@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Action } from '../model';
-import { EqualsPipe } from '../equals.pipe';
 import { StateService } from '../store/state.service';
 
 interface Option<T> {
@@ -18,7 +17,6 @@ interface Option<T> {
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  providers: [EqualsPipe],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent implements OnInit {
@@ -27,7 +25,7 @@ export class MenuComponent implements OnInit {
   optionNombres$: Observable<Array<Option<number>>>;
   optionActions$: Observable<Array<Option<Action>>>;
 
-  constructor(private stateService: StateService, equalsPipe: EqualsPipe) {}
+  constructor(private stateService: StateService) {}
 
   ngOnInit() {
     this.nombreChoisi$ = this.stateService.getNombreChoisi();

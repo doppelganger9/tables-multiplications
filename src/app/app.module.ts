@@ -1,6 +1,5 @@
 import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { EqualsPipe } from './equals.pipe';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './mon-menu/menu.component';
 import { RevisionTableComponent } from './revision-table/revision-table.component';
@@ -15,7 +14,6 @@ import { createCustomElement } from '@angular/elements';
     TablesMultiplicationsAppComponent,
     MenuComponent,
     TableMultiplicationComponent,
-    EqualsPipe,
     RevisionTableComponent
   ],
   providers: [StateService],
