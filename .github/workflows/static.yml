@@ -43,7 +43,10 @@ jobs:
       - name: Check CSS Linting
         run: npm run lint:css
       - name: Run tests and collect code coverage
-        run: npm run test -- --coverage
+        run: |
+          npm run test
+          ls -l coverage
+          ls -l coverage/table-multiplication
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@1.1.3
         with:
