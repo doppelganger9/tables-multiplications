@@ -18,11 +18,12 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "wc:build": "npm run wc:build-task && npm run wc:package-task",
-    "wc:build-task": "ng build tables-multiplications --output-hashing=none",
-    "wc:package-task": "node ./build/concat.mjs",
+    "prewc:build": "node ./build/git-info.mjs",
+    "wc:build": "ng build tables-multiplications --output-hashing=none",
+    "postwc:build": "node ./build/concat.mjs",
     "wc:copy-static": "cp ./dist/table-multiplication-app.js ./static/",
-    "wc:serve": "npm run wc:build && npm run wc:copy-static && npx http-server static"
+    "prewc:serve": "npm run wc:build && npm run wc:copy-static",
+    "wc:serve": "npx http-server static"
   },
   "dependencies": {
     "@angular/animations": "16.2.10",
