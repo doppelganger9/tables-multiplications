@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
+  EMPTY,
   Observable,
   combineLatest,
   concat,
@@ -84,20 +85,24 @@ export class RevisionTableComponent implements OnInit {
       );
   }
 
-  clicQuestionSuivante(): void {
-    this.stateService.generateNewQuestion();
+  clicQuestionSuivante(): Observable<Question> {
+    return this.stateService.generateNewQuestion();
   }
 
-  clicValiderReponse(): void {
+  clicValiderReponse(): Observable<Question> {
     const total = 0 + Number(this.reponse);
 
-    this.stateService.soumettreReponse(total).then((reponse) => {
-      // remise à vide du champs réponse
-      this.reponse = '';
-      // si reponse OK / Question finie, alors on demande la prochaine question.
-      if (reponse.correcte) {
-        this.stateService.generateNewQuestion();
-      }
-    });
+    return this.stateService.soumettreReponse(total).pipe(
+      switchMap((reponse) => {
+        // remise à vide du champs réponse
+        this.reponse = '';
+        // si reponse OK / Question finie, alors on demande la prochaine question.
+        if (reponse.correcte) {
+          return this.stateService.generateNewQuestion();
+        } else {
+          return EMPTY;
+        }
+      })
+    );
   }
 }

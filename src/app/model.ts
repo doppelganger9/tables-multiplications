@@ -25,3 +25,9 @@ export interface Question {
   dateDebut: Date;
   finie: boolean;
 }
+
+export interface VersionData {
+  version?: string;
+  shortSHA?: string;
+  lastCommitTime?: Date;
+}

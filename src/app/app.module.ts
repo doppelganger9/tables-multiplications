@@ -7,6 +7,7 @@ import { StateService } from './store/state.service';
 import { TableMultiplicationComponent } from './ma-table-multiplication/table-multiplication.component';
 import { TablesMultiplicationsAppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
+import { MonFooterComponent } from './mon-footer/mon-footer.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
@@ -14,7 +15,8 @@ import { createCustomElement } from '@angular/elements';
     TablesMultiplicationsAppComponent,
     MenuComponent,
     TableMultiplicationComponent,
-    RevisionTableComponent
+    RevisionTableComponent,
+    MonFooterComponent
   ],
   providers: [StateService]
 })

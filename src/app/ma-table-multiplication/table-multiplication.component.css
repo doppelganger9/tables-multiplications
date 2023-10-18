@@ -27,14 +27,24 @@ td {
   text-align: center;
 }
 **/
+
+article {
+  width: fit-content;
+  margin: 20px auto;
+}
+
 table {
   font-size: x-large;
+  width: fit-content;
+  margin: auto;
 }
 
 th {
   text-align: center;
+  width: fit-content;
 }
 
 td {
   text-align: center;
+  width: fit-content;
 }

@@ -1,13 +1,22 @@
-import { Action, Question, Reponse, StatistiqueReponses } from '../model';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import {
+  Action,
+  Question,
+  Reponse,
+  StatistiqueReponses,
+  VersionData
+} from '../model';
+import { BehaviorSubject, EMPTY, Observable, map, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 /**
  * L'idée est de stocker ici l'état de l'app sans avoir à dégainer
  * NgRx/NgXs/Redux.
  *
- * Les actions appellent le service qui met à jour son état interne et
- * propage l'état de la vue via des Observables
+ * La vue appelle des actions.
+ * Ces actions mettent à jour l'état interne de ce service.
+ * Une action est par convention nommée `verbeObjet(...donnéesObjet...): Observable<void|Objet>`
+ * La vue s'abonne et Observe des données dérivées de cet état interne et se met à jour en conséquence.
+ * Ces sélecteurs sont `getXXXX: Observable<xxx>`
  */
 @Injectable()
 export class StateService {
@@ -39,7 +48,7 @@ export class StateService {
   }
 
   // ACTION
-  async updateNombreChoisi(nombre: number): Promise<void> {
+  updateNombreChoisi(nombre: number): Observable<void> {
     console.log('state update nombre : ' + nombre);
     this.nombreChoisi$.next(nombre);
     // et invalider les questions en cours
@@ -53,7 +62,7 @@ export class StateService {
   }
 
   // ACTION
-  async updateActionChoisie(action: Action): Promise<void> {
+  updateActionChoisie(action: Action): Observable<void> {
     console.log('state update action : ' + action);
     this.actionChoisie$.next(action);
     // et invalider les questions en cours
@@ -83,7 +92,7 @@ export class StateService {
   }
 
   // ACTION
-  async generateNewQuestion(): Promise<Question> {
+  generateNewQuestion(): Observable<Question> {
     // sélections état interne
     const questions = this.questions$.getValue();
     const nombre = this.nombreChoisi$.getValue();
@@ -100,7 +109,7 @@ export class StateService {
     // émettre
     this.questions$.next([...questions.map(finirLaQuestion), questionGeneree]);
     console.log('question générée', questionGeneree);
-    return questionGeneree;
+    return of(questionGeneree);
   }
 
   // SELECTION
@@ -160,17 +169,18 @@ export class StateService {
   }
 
   // ACTION
-  async terminerToutesLesQuestions(): Promise<void> {
+  terminerToutesLesQuestions(): Observable<void> {
     // sélection store interne
     const questions = this.questions$.getValue();
     if (questions && questions.length > 0) {
       this.questions$.next([...questions.map(finirLaQuestion)]);
     }
     console.log('toutes les questions sont maintenant passées au statut finie');
+    return EMPTY;
   }
 
   // ACTION
-  async soumettreReponse(reponse: number): Promise<Reponse> {
+  soumettreReponse(reponse: number): Observable<Reponse> {
     // sélection store interne
     const reponses = this.reponses$.getValue();
     const questions = this.questions$.getValue();
@@ -207,7 +217,26 @@ export class StateService {
     this.reponses$.next([...reponses, reponseCalculee]);
     // et aussi c'est une promesse qui retourne la valeur.
     console.log('réponse vérifiée', reponseCalculee);
-    return reponseCalculee;
+    return of(reponseCalculee);
+  }
+
+  // SELECTION
+  getVersion(): Observable<VersionData> {
+    return new Observable((subscriber) => {
+      Promise.all([import('package.json'), import('src/git-version.json')])
+        .then(([packageJson, gitVersionJson]) => {
+          const lastCommitTime = gitVersionJson?.lastCommitTime;
+          const time = Date.parse(lastCommitTime);
+          const dateTime = new Date(time);
+          subscriber.next({
+            version: packageJson?.version,
+            shortSHA: gitVersionJson?.shortSHA ?? 'inconnue',
+            lastCommitTime: dateTime ?? new Date()
+          } as VersionData);
+        })
+        .catch((err) => subscriber.error(err))
+        .finally(() => subscriber.complete());
+    });
   }
 }
 

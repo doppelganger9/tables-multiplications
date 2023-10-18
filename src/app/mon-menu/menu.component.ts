@@ -38,14 +38,14 @@ export class MenuComponent implements OnInit {
     );
   }
 
-  choisirNombre(event: any): void {
+  choisirNombre(event: any): Observable<void> {
     const nombreChoisi: number = +event.target.value;
-    this.stateService.updateNombreChoisi(nombreChoisi);
+    return this.stateService.updateNombreChoisi(nombreChoisi);
   }
 
-  choisirAction(event: any): void {
+  choisirAction(event: any): Observable<void> {
     const actionChoisie: Action = event.target.value;
-    this.stateService.updateActionChoisie(actionChoisie);
+    return this.stateService.updateActionChoisie(actionChoisie);
   }
 }
 

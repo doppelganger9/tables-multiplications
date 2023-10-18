@@ -4,6 +4,10 @@
 
 Petit projet perso pour donner à mes enfants un outils d'apprentissage et révision des tables de multiplications.
 
+## Démo
+
+Voir https://doppelganger9.github.io/tables-multiplications/
+
 ## Utilisation
 
 - cloner ce repository

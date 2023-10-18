@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonFooterComponent should render the version from stateService 1`] = `
+<div
+  data-e2e="version-container"
+>
+  <span
+    title="Version test - fake - Wed Oct 18 2023 20:52:16 GMT+0200 (GMT+02:00)"
+  >
+    vtest
+  </span>
+    -  
+  <span>
+    <a
+      href="https://github.com/doppelganger9/tables-multiplications"
+    >
+      sources
+    </a>
+  </span>
+</div>
+`;

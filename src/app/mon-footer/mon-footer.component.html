@@ -1,0 +1,14 @@
+<div data-e2e="version-container">
+  <span
+    title="Version {{ (version$ | async)?.version }} - {{
+      (version$ | async)?.shortSHA
+    }} - {{ (version$ | async)?.lastCommitTime }}"
+    >v{{ (version$ | async)?.version }}</span
+  >
+  &nbsp;-&nbsp;
+  <span
+    ><a href="https://github.com/doppelganger9/tables-multiplications"
+      >sources</a
+    ></span
+  >
+</div>
