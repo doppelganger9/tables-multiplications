@@ -35,7 +35,7 @@ jobs:
         with:
           cache: 'npm'
       - name: Clean Install deps
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Build Angular Element Web Component
         run: npm run wc:build
       - name: Check Linting
