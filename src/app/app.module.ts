@@ -16,8 +16,7 @@ import { createCustomElement } from '@angular/elements';
     TableMultiplicationComponent,
     RevisionTableComponent
   ],
-  providers: [StateService],
-  entryComponents: [TablesMultiplicationsAppComponent]
+  providers: [StateService]
 })
 export class TablesMultiplicationsAppModule implements DoBootstrap {
   constructor(private injector: Injector) {

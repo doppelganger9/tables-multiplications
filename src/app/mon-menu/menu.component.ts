@@ -72,6 +72,6 @@ function toutesLesOptionsDeChoixDAction(
         selected: action === actionActuelle,
         value: action,
         label: `${action}`
-      } as Option<Action>)
+      }) as Option<Action>
   );
 }

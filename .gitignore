@@ -5,3 +5,4 @@ coverage/
 .angular/
 static/table-multiplication-app.js
 cypress/videos/
+npm-cache/
