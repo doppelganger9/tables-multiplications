@@ -2,7 +2,7 @@
 import { appendFileSync, lstatSync, existsSync, rmSync, readFileSync } from 'fs';
 
 const distDir = './dist/tables-multiplications/';
-const filesToConcatenate = ["polyfills.js", "runtime.js", "main.js"];
+const filesToConcatenate = ["polyfills.js", "runtime.js", "main.js", "vendor.js", "package_json.js", "scr_git-version_json.js"];
 const targetAppFile = './dist/table-multiplication-app.js';
 
 if (existsSync(targetAppFile)) {
