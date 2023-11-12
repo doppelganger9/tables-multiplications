@@ -6,6 +6,9 @@ import {
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 import { getTestBed } from '@angular/core/testing';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { LOCALE_ID } from '@angular/core';
 
 Object.defineProperty(window, 'CSS', { value: null });
 Object.defineProperty(window, 'getComputedStyle', {
@@ -39,3 +42,16 @@ getTestBed().initTestEnvironment(
     teardown: { destroyAfterEach: true }
   }
 );
+
+registerLocaleData(localeFr, 'fr-FR');
+
+beforeEach(() => {
+  getTestBed().configureTestingModule({
+    providers: [
+      {
+        provide: LOCALE_ID,
+        useValue: 'fr-FR'
+      }
+    ]
+  });
+});

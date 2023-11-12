@@ -1,4 +1,10 @@
-import { ApplicationRef, DoBootstrap, Injector, NgModule } from '@angular/core';
+import {
+  ApplicationRef,
+  DoBootstrap,
+  Injector,
+  LOCALE_ID,
+  NgModule
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './mon-menu/menu.component';
@@ -8,6 +14,10 @@ import { TableMultiplicationComponent } from './ma-table-multiplication/table-mu
 import { TablesMultiplicationsAppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
 import { MonFooterComponent } from './mon-footer/mon-footer.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
@@ -18,7 +28,13 @@ import { MonFooterComponent } from './mon-footer/mon-footer.component';
     RevisionTableComponent,
     MonFooterComponent
   ],
-  providers: [StateService]
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'fr-FR'
+    },
+    StateService
+  ]
 })
 export class TablesMultiplicationsAppModule implements DoBootstrap {
   constructor(private injector: Injector) {

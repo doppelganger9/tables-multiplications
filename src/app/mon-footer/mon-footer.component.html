@@ -2,7 +2,7 @@
   <span
     title="Version {{ (version$ | async)?.version }} - {{
       (version$ | async)?.shortSHA
-    }} - {{ (version$ | async)?.lastCommitTime }}"
+    }} - {{ (version$ | async)?.lastCommitTime | date: 'full' }} "
     >v{{ (version$ | async)?.version }}</span
   >
   &nbsp;-&nbsp;

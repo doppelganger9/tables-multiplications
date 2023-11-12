@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import './polyfills';
 import { TablesMultiplicationsAppModule } from './app/app.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

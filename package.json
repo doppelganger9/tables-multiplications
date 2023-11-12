@@ -48,6 +48,7 @@
     "@angular-eslint/template-parser": "17.0.1",
     "@angular/cli": "17.0.0",
     "@angular/compiler-cli": "17.0.2",
+    "@angular/localize": "17.0.2",
     "@cypress/schematic": "2.5.1",
     "@types/jest": "29.5.8",
     "@typescript-eslint/eslint-plugin": "6.10.0",
