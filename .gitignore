@@ -6,5 +6,6 @@ coverage/
 static/table-multiplication-app.js
 cypress/videos/
 npm-cache/
+.npmrc
 
 /src/git-version.json
