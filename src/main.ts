@@ -5,7 +5,9 @@ import { TablesMultiplicationsAppModule } from './app/app.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 platformBrowserDynamic()
-  .bootstrapModule(TablesMultiplicationsAppModule)
+  .bootstrapModule(TablesMultiplicationsAppModule, {
+    ngZone: 'noop'
+  })
   .then((ref) => {
     // Ensure Angular destroys itself on hot reloads.
     if (window['ngRef']) {

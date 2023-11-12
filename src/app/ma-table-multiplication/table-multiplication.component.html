@@ -7,8 +7,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let n of tableMultiplication$ | async; index as i">
-        <td>{{ i + 1 }} x {{ nombre$ | async }}</td>
+      <tr *ngFor="let n of tableMultiplication$ | push; index as i">
+        <td>{{ i + 1 }} x {{ nombre$ | push }}</td>
         <td>{{ n }}</td>
       </tr>
     </tbody>

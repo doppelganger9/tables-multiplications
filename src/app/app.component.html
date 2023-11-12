@@ -1,6 +1,6 @@
 <h1>Les tables de multiplication</h1>
 <app-menu></app-menu>
-<ng-container *ngIf="modeAffichage$ | async; else modeRevision">
+<ng-container *ngIf="modeAffichage$ | push; else modeRevision">
   <app-table-multiplication
     [nombre$]="nombreChoisi$"
   ></app-table-multiplication>

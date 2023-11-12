@@ -16,6 +16,7 @@ import { createCustomElement } from '@angular/elements';
 import { MonFooterComponent } from './mon-footer/mon-footer.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { PushPipe } from './push.pipe';
 
 registerLocaleData(localeFr);
 
@@ -26,7 +27,8 @@ registerLocaleData(localeFr);
     MenuComponent,
     TableMultiplicationComponent,
     RevisionTableComponent,
-    MonFooterComponent
+    MonFooterComponent,
+    PushPipe
   ],
   providers: [
     {

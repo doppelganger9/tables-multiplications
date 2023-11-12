@@ -5,20 +5,20 @@
     </button>
     <br />
 
-    <div *ngIf="afficherLaDerniereQuestion$ | async">
+    <div *ngIf="afficherLaDerniereQuestion$ | push">
       <p class="question">
-        Combien font {{ (question$ | async)?.nombre }} fois
-        {{ (question$ | async)?.operande }} ?
+        Combien font {{ (question$ | push)?.nombre }} fois
+        {{ (question$ | push)?.operande }} ?
       </p>
 
       <label for="reponse">Ta réponse : </label
       ><input name="reponse" [(ngModel)]="reponse" id="reponse" type="number" />
       <input name="submit" type="submit" value="Valider (ou touche entrée)" />
     </div>
-    <h2 *ngIf="afficherFlashMessageBonneReponse$ | async" class="correcte">
+    <h2 *ngIf="afficherFlashMessageBonneReponse$ | push" class="correcte">
       ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
     </h2>
-    <h2 *ngIf="afficherFlashMessageMauvaiseReponse$ | async" class="incorrecte">
+    <h2 *ngIf="afficherFlashMessageMauvaiseReponse$ | push" class="incorrecte">
       🙀 MAUVAISE REPONSE, ESSAIES ENCORE !!<!-- TODO varier le message dans une liste random -->
     </h2>
   </form>

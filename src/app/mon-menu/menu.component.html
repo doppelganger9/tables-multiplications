@@ -1,7 +1,7 @@
 <label for="select-action">Tu veux </label>
 <select id="select-nombre" (change)="choisirAction($event)">
   <option
-    *ngFor="let btn of optionActions$ | async"
+    *ngFor="let btn of optionActions$ | push"
     [selected]="btn.selected"
     [label]="btn.label"
     [value]="btn.value"
@@ -11,7 +11,7 @@
 <label for="select-nombre"> la table des </label>
 <select id="select-nombre" (change)="choisirNombre($event)">
   <option
-    *ngFor="let btn of optionNombres$ | async"
+    *ngFor="let btn of optionNombres$ | push"
     [selected]="btn.selected"
     [label]="btn.label"
     [value]="btn.value"
