@@ -18,7 +18,7 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "prewc:build": "node ./build/git-info.mjs",
+    "prewc:build": "mkdir -p static/ && node ./build/git-info.mjs",
     "wc:build": "ng build tables-multiplications",
     "wc:copy-static": "cp ./dist/tables-multiplications/browser/* ./static/",
     "prewc:serve": "npm run wc:build && npm run wc:copy-static",
