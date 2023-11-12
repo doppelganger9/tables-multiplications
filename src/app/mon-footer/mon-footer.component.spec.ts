@@ -18,6 +18,7 @@ describe(`MonFooterComponent`, () => {
                 version: 'test',
                 shortSHA: 'fake',
                 lastCommitTime: new Date(
+                  // NOTE: le test s'éxécute en TZ=UTC
                   Date.parse('2023-10-18T20:52:16.000+0200')
                 )
               } as VersionData)

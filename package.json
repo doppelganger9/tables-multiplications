@@ -9,7 +9,7 @@
     "start": "ng serve",
     "prebuild": "node ./build/git-info.mjs",
     "build": "ng build",
-    "test": "npx jest",
+    "test": "TZ=UTC npx jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
     "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,html}' --quiet --fix",
