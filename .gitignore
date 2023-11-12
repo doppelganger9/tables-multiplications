@@ -3,7 +3,7 @@ dist/
 out-tsc/
 coverage/
 .angular/
-static/table-multiplication-app.js
+static/
 cypress/videos/
 npm-cache/
 .npmrc

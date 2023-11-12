@@ -19,9 +19,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "prewc:build": "node ./build/git-info.mjs",
-    "wc:build": "ng build tables-multiplications --output-hashing=none",
-    "postwc:build": "node ./build/concat.mjs",
-    "wc:copy-static": "cp ./dist/table-multiplication-app.js ./static/",
+    "wc:build": "ng build tables-multiplications",
+    "wc:copy-static": "cp ./dist/tables-multiplications/browser/* ./static/",
     "prewc:serve": "npm run wc:build && npm run wc:copy-static",
     "wc:serve": "npx http-server static"
   },
