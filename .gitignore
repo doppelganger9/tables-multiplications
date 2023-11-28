@@ -6,6 +6,5 @@ coverage/
 static/
 cypress/videos/
 npm-cache/
-.npmrc
 
 /src/git-version.json
