@@ -49,7 +49,7 @@
     "@angular/compiler-cli": "17.0.5",
     "@angular/localize": "17.0.5",
     "@cypress/schematic": "2.5.1",
-    "@types/jest": "29.5.10",
+    "@types/jest": "29.5.11",
     "@typescript-eslint/eslint-plugin": "6.13.2",
     "@typescript-eslint/parser": "6.13.2",
     "cypress": "latest",
