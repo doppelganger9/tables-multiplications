@@ -1,0 +1,38 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Check PR
+
+on:
+  # Runs on pushes except the main branch
+  push:
+    branches-ignore:
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Single deploy job since we're just deploying
+  check-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.4
+        with:
+          cache: 'npm'
+      - name: Clean Install deps
+        run: npm ci --legacy-peer-deps
+      - name: Build Angular Element Web Component
+        run: npm run wc:build
+      - name: Check Linting
+        run: npm run lint
+      - name: Check CSS Linting
+        run: npm run lint:css
+      - name: Run tests and collect code coverage
+        run: |
+          npm run test
+      - name: Check E2E tests
+        run: npm run test:e2e
+        env:
+          CI: true
