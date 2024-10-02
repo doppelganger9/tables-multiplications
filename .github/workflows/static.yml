@@ -52,6 +52,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./coverage/table-multiplication/lcov.info
+      - name: Check E2E tests
+        run: npm run test:e2e
+        env:
+          CI: true
       - name: copy static assets
         run: npm run wc:copy-static
       - name: Change BASE HREF
