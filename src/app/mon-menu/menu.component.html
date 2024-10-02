@@ -1,5 +1,5 @@
 <label for="select-action">Tu veux </label>
-<select id="select-nombre" (change)="choisirAction($event)">
+<select id="select-action" (change)="choisirAction($event)">
   <option
     *ngFor="let btn of optionActions$ | push"
     [selected]="btn.selected"

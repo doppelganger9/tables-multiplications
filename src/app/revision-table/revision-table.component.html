@@ -1,6 +1,6 @@
 <article>
   <form (submit)="clicValiderReponse()">
-    <button type="button" (click)="clicQuestionSuivante()">
+    <button data-e2e="btn-next-question" type="button" (click)="clicQuestionSuivante()">
       Question Suivante !
     </button>
     <br />
@@ -15,10 +15,10 @@
       ><input name="reponse" [(ngModel)]="reponse" id="reponse" type="number" />
       <input name="submit" type="submit" value="Valider (ou touche entrée)" />
     </div>
-    <h2 *ngIf="afficherFlashMessageBonneReponse$ | push" class="correcte">
+    <h2 data-e2e="good-answer" *ngIf="afficherFlashMessageBonneReponse$ | push" class="correcte">
       ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
     </h2>
-    <h2 *ngIf="afficherFlashMessageMauvaiseReponse$ | push" class="incorrecte">
+    <h2 data-e2e="bad-answer" *ngIf="afficherFlashMessageMauvaiseReponse$ | push" class="incorrecte">
       🙀 MAUVAISE REPONSE, ESSAIES ENCORE !!<!-- TODO varier le message dans une liste random -->
     </h2>
   </form>
