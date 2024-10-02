@@ -60,7 +60,7 @@
     "jest": "29.7.0",
     "jest-preset-angular": "14.2.4",
     "local-cypress": "1.2.6",
-    "prettier": "3.2.5",
+    "prettier": "3.3.3",
     "start-server-and-test": "2.0.8",
     "stylelint": "16.9.0",
     "stylelint-config-standard": "35.0.0",
