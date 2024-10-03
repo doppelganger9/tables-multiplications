@@ -16,7 +16,7 @@
             "outputPath": "dist/tables-multiplications",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["src/polyfills.ts"],
+            "polyfills": ["@angular/localize/init"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
