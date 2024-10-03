@@ -3,7 +3,7 @@ import { Observable, map } from 'rxjs';
 import { Action } from '../model';
 import { StateService } from '../store/state.service';
 
-interface Option<T> {
+interface TMOption<T> {
   selected: boolean;
   value: T;
   label: string;
@@ -22,8 +22,8 @@ interface Option<T> {
 export class MenuComponent implements OnInit {
   nombreChoisi$: Observable<number>;
   actionChoisie$: Observable<Action>;
-  optionNombres$: Observable<Array<Option<number>>>;
-  optionActions$: Observable<Array<Option<Action>>>;
+  optionNombres$: Observable<Array<TMOption<number>>>;
+  optionActions$: Observable<Array<TMOption<Action>>>;
 
   constructor(private stateService: StateService) {}
 
@@ -51,27 +51,27 @@ export class MenuComponent implements OnInit {
 
 function toutesLesOptionsDeChoixDeNombre(
   nombreActuel: number
-): Array<Option<number>> {
+): Array<TMOption<number>> {
   let res = [];
   for (let i = 1; i <= 10; i++) {
     res.push({
       selected: i === nombreActuel,
       value: i,
       label: `${i}`
-    } as Option<number>);
+    } as TMOption<number>);
   }
   return res;
 }
 
 function toutesLesOptionsDeChoixDAction(
   actionActuelle: Action
-): Array<Option<Action>> {
+): Array<TMOption<Action>> {
   return (['Afficher', 'Réviser'] as Array<Action>).map(
     (action) =>
       ({
         selected: action === actionActuelle,
         value: action,
         label: `${action}`
-      }) as Option<Action>
+      }) as TMOption<Action>
   );
 }
