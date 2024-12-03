@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "5.2.1",
     "globals": "15.13.0",
     "jest": "29.7.0",
-    "jest-preset-angular": "14.4.1",
+    "jest-preset-angular": "14.4.2",
     "local-cypress": "1.2.6",
     "prettier": "3.4.1",
     "start-server-and-test": "2.0.8",
