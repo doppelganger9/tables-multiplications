@@ -48,7 +48,7 @@ jobs:
           ls -l coverage
           ls -l coverage/table-multiplication
       - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v2.3.4
+        uses: coverallsapp/github-action@v2.3.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./coverage/table-multiplication/lcov.info
