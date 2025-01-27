@@ -67,7 +67,7 @@
     "prettier": "3.4.2",
     "start-server-and-test": "2.0.10",
     "stylelint": "16.14.1",
-    "stylelint-config-standard": "36.0.1",
+    "stylelint-config-standard": "37.0.0",
     "ts-jest": "29.2.5",
     "typescript": "5.4.5"
   }
