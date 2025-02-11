@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "8.24.0",
     "@typescript-eslint/utils": "8.24.0",
     "cypress": "latest",
-    "eslint": "9.20.0",
+    "eslint": "9.20.1",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.3",
     "globals": "15.14.0",
