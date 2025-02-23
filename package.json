@@ -68,7 +68,7 @@
     "start-server-and-test": "2.0.10",
     "stylelint": "16.14.1",
     "stylelint-config-standard": "36.0.1",
-    "ts-jest": "29.2.5",
+    "ts-jest": "29.2.6",
     "typescript": "5.4.5"
   }
 }
