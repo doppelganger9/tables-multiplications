@@ -7,14 +7,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let n of tableMultiplication$ | push; index as i">
-        <td>{{ i + 1 }} x {{ nombre$ | push }}</td>
-        <td>{{ n }}</td>
-      </tr>
+      @for (n of tableMultiplication$ | push; track n; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }} x {{ nombre$ | push }}</td>
+          <td>{{ n }}</td>
+        </tr>
+      }
     </tbody>
   </table>
   <!--
-TODO: afficher les statistiques de révisions pour chaque opération de calcul,
+  TODO: afficher les statistiques de révisions pour chaque opération de calcul,
   lister le nombre de bonnes réponses, le nombre de mauvaises réponses, le temps
   moyen pour obtenir la bonne réponse, le meilleur temps pour la bonne réponse,
   le pire temps de réponse.

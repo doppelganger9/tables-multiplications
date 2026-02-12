@@ -4,41 +4,44 @@
       data-e2e="btn-next-question"
       type="button"
       (click)="clicQuestionSuivante()"
-    >
+      >
       Question Suivante !
     </button>
     <br />
 
-    <div *ngIf="afficherLaDerniereQuestion$ | push">
-      <p class="question">
-        Combien font {{ (question$ | push)?.nombre }} fois
-        {{ (question$ | push)?.operande }} ?
-      </p>
-
-      <label for="reponse">Ta réponse : </label
-      ><input name="reponse" [(ngModel)]="reponse" id="reponse" type="number" />
-      <input name="submit" type="submit" value="Valider (ou touche entrée)" />
-    </div>
-    <h2
-      data-e2e="good-answer"
-      *ngIf="afficherFlashMessageBonneReponse$ | push"
-      class="correcte"
-    >
-      ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
-    </h2>
-    <h2
-      data-e2e="bad-answer"
-      *ngIf="afficherFlashMessageMauvaiseReponse$ | push"
-      class="incorrecte"
-    >
-      🙀 MAUVAISE REPONSE, ESSAIES ENCORE !!<!-- TODO varier le message dans une liste random -->
-    </h2>
-  </form>
-  <!--
-TODO afficher les statistiques en cours. 
-  pour chaque question : le temps entre
-  l'affichage de la question et chaque proposition de solution ; jusqu'à ce que
-  la solution soit la bonne. Ne pas utiliser de setInterval ou setTimeout ;
-  enregistrer le temps actuel au moment où l'utilisateur VALIDE sa saisie (ENTER
-  ou bouton pour valider)
---></article>
+    @if (afficherLaDerniereQuestion$ | push) {
+      <div>
+        <p class="question">
+          Combien font {{ (question$ | push)?.nombre }} fois
+          {{ (question$ | push)?.operande }} ?
+        </p>
+        <label for="reponse">Ta réponse : </label
+          ><input name="reponse" [(ngModel)]="reponse" id="reponse" type="number" />
+          <input name="submit" type="submit" value="Valider (ou touche entrée)" />
+        </div>
+      }
+      @if (afficherFlashMessageBonneReponse$ | push) {
+        <h2
+          data-e2e="good-answer"
+          class="correcte"
+          >
+          ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
+        </h2>
+      }
+      @if (afficherFlashMessageMauvaiseReponse$ | push) {
+        <h2
+          data-e2e="bad-answer"
+          class="incorrecte"
+          >
+          🙀 MAUVAISE REPONSE, ESSAIES ENCORE !!<!-- TODO varier le message dans une liste random -->
+        </h2>
+      }
+    </form>
+    <!--
+    TODO afficher les statistiques en cours.
+    pour chaque question : le temps entre
+    l'affichage de la question et chaque proposition de solution ; jusqu'à ce que
+    la solution soit la bonne. Ne pas utiliser de setInterval ou setTimeout ;
+    enregistrer le temps actuel au moment où l'utilisateur VALIDE sa saisie (ENTER
+    ou bouton pour valider)
+  --></article>

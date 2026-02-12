@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "module": "esnext",
     "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "esModuleInterop": true,
     "target": "es2022",

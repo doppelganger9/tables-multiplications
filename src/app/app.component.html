@@ -1,11 +1,10 @@
 <h1>Les tables de multiplication</h1>
 <app-menu></app-menu>
-<ng-container *ngIf="modeAffichage$ | push; else modeRevision">
+@if (modeAffichage$ | push) {
   <app-table-multiplication
     [nombre$]="nombreChoisi$"
   ></app-table-multiplication>
-</ng-container>
-<ng-template #modeRevision>
+} @else {
   <app-revision-table [nombre$]="nombreChoisi$"></app-revision-table>
-</ng-template>
+}
 <app-footer></app-footer>
