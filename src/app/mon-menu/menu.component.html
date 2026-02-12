@@ -1,28 +1,30 @@
 <label for="select-action">Tu veux </label>
 <select id="select-action" (change)="choisirAction($event)">
-  <option
-    *ngFor="let btn of optionActions$ | push"
-    [selected]="btn.selected"
-    [label]="btn.label"
-    [value]="btn.value"
-  ></option>
+  @for (btn of optionActions$ | push; track btn) {
+    <option
+      [selected]="btn.selected"
+      [label]="btn.label"
+      [value]="btn.value"
+    ></option>
+  }
 </select>
 
 <label for="select-nombre"> la table des </label>
 <select id="select-nombre" (change)="choisirNombre($event)">
-  <option
-    *ngFor="let btn of optionNombres$ | push"
-    [selected]="btn.selected"
-    [label]="btn.label"
-    [value]="btn.value"
-  ></option>
+  @for (btn of optionNombres$ | push; track btn) {
+    <option
+      [selected]="btn.selected"
+      [label]="btn.label"
+      [value]="btn.value"
+    ></option>
+  }
 </select>
 <hr />
 <!--
-  
+
 TODO: afficher les statistiques de révisions pour chaque table. Calculer un
-  score basé sur ce qui a été vu (si on a eu comme question chaque opération de
-  la table), et connu (si on a bon à toutes les opérations) sur 10, et la
-  rapidité (min/moy/max pour l'ensemble des opérations).
+score basé sur ce qui a été vu (si on a eu comme question chaque opération de
+la table), et connu (si on a bon à toutes les opérations) sur 10, et la
+rapidité (min/moy/max pour l'ensemble des opérations).
 
 -->
