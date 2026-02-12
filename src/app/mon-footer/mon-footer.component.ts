@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StateService } from '../store/state.service';
 import { VersionData } from '../model';
@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 export class MonFooterComponent implements OnInit {
   version$: Observable<VersionData>;
 
-  constructor(private stateService: StateService) {}
+  private readonly stateService: StateService = inject(StateService);
 
   ngOnInit(): void {
     this.version$ = this.stateService.getVersion();

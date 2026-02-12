@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Input,
   OnInit
 } from '@angular/core';
@@ -36,7 +37,7 @@ export class RevisionTableComponent implements OnInit {
 
   reponse: string; // simple template-driven form
 
-  constructor(private stateService: StateService) {}
+  private readonly stateService: StateService = inject(StateService);
 
   ngOnInit() {
     this.question$ = this.stateService.getLastQuestion();

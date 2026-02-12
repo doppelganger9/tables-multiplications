@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Action } from '../model';
 import { StateService } from '../store/state.service';
@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
   optionNombres$: Observable<Array<TMOption<number>>>;
   optionActions$: Observable<Array<TMOption<Action>>>;
 
-  constructor(private stateService: StateService) {}
+  private readonly stateService: StateService = inject(StateService);
 
   ngOnInit() {
     this.nombreChoisi$ = this.stateService.getNombreChoisi();
