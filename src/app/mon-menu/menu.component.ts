@@ -14,10 +14,11 @@ interface TMOption<T> {
  * et une action (afficher, réviser)
  */
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-menu',
+    templateUrl: './menu.component.html',
+    styleUrls: ['./menu.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MenuComponent implements OnInit {
   nombreChoisi$: Observable<number>;

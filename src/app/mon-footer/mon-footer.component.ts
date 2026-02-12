@@ -5,11 +5,12 @@ import { VersionData } from '../model';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './mon-footer.component.html',
-  styleUrls: ['./mon-footer.component.css'],
-  providers: [DatePipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-footer',
+    templateUrl: './mon-footer.component.html',
+    styleUrls: ['./mon-footer.component.css'],
+    providers: [DatePipe],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MonFooterComponent implements OnInit {
   version$: Observable<VersionData>;

@@ -26,29 +26,29 @@
     "wc:serve": "npx http-server static"
   },
   "dependencies": {
-    "@angular/animations": "18.2.14",
-    "@angular/common": "18.2.14",
-    "@angular/compiler": "18.2.14",
-    "@angular/core": "18.2.14",
-    "@angular/elements": "18.2.14",
-    "@angular/forms": "18.2.14",
-    "@angular/platform-browser": "18.2.14",
-    "@angular/platform-browser-dynamic": "18.2.14",
-    "@angular/router": "18.2.14",
+    "@angular/animations": "19.2.18",
+    "@angular/common": "19.2.18",
+    "@angular/compiler": "19.2.18",
+    "@angular/core": "19.2.18",
+    "@angular/elements": "19.2.18",
+    "@angular/forms": "19.2.18",
+    "@angular/platform-browser": "19.2.18",
+    "@angular/platform-browser-dynamic": "19.2.18",
+    "@angular/router": "19.2.18",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
     "zone.js": "0.16.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "18.2.21",
     "@angular-eslint/builder": "19.8.1",
     "@angular-eslint/eslint-plugin": "19.8.1",
     "@angular-eslint/eslint-plugin-template": "19.8.1",
     "@angular-eslint/schematics": "19.8.1",
     "@angular-eslint/template-parser": "19.8.1",
-    "@angular/cli": "18.2.21",
-    "@angular/compiler-cli": "18.2.14",
-    "@angular/localize": "18.2.14",
+    "@angular/build": "^19.2.19",
+    "@angular/cli": "19.2.19",
+    "@angular/compiler-cli": "19.2.18",
+    "@angular/localize": "19.2.18",
     "@cypress/schematic": "4.3.0",
     "@eslint/eslintrc": "3.3.3",
     "@eslint/js": "9.39.2",
@@ -69,6 +69,6 @@
     "stylelint": "16.26.1",
     "stylelint-config-standard": "39.0.1",
     "ts-jest": "29.4.6",
-    "typescript": "5.4.5"
+    "typescript": "5.8.3"
   }
 }

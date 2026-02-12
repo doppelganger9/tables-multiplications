@@ -20,10 +20,11 @@ import { Question } from '../model';
 import { StateService } from '../store/state.service';
 
 @Component({
-  selector: 'app-revision-table',
-  templateUrl: './revision-table.component.html',
-  styleUrls: ['./revision-table.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-revision-table',
+    templateUrl: './revision-table.component.html',
+    styleUrls: ['./revision-table.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class RevisionTableComponent implements OnInit {
   @Input()
