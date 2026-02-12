@@ -7,10 +7,11 @@ import {
 import { Observable, of, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-table-multiplication',
-  templateUrl: './table-multiplication.component.html',
-  styleUrls: ['./table-multiplication.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-table-multiplication',
+    templateUrl: './table-multiplication.component.html',
+    styleUrls: ['./table-multiplication.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TableMultiplicationComponent implements OnChanges {
   @Input()

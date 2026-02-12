@@ -18,7 +18,10 @@ import { Observable, SubscriptionLike } from 'rxjs';
  * - https://github.com/rx-angular/rx-angular/blob/main/libs/template/push/src/lib/push.pipe.ts
  * - https://github.com/manfredsteyer/articles/blob/master/angular-elements-without-zonejs.md
  */
-@Pipe({ name: 'push', pure: false })
+@Pipe({
+    name: 'push', pure: false,
+    standalone: false
+})
 export class PushPipe implements OnDestroy, PipeTransform {
   private _latestValue: any = null;
   private _latestReturnedValue: any = null;

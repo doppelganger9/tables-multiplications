@@ -8,10 +8,11 @@ import { StateService } from './store/state.service';
  * appelant les services.
  */
 @Component({
-  selector: 'app-shell',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-shell',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TablesMultiplicationsAppComponent implements OnInit {
   nombreChoisi$: Observable<number>;
