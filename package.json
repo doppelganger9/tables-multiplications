@@ -40,13 +40,13 @@
     "zone.js": "0.16.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "18.2.21",
+    "@angular-devkit/build-angular": "21.1.4",
     "@angular-eslint/builder": "19.8.1",
     "@angular-eslint/eslint-plugin": "19.8.1",
     "@angular-eslint/eslint-plugin-template": "19.8.1",
     "@angular-eslint/schematics": "19.8.1",
     "@angular-eslint/template-parser": "19.8.1",
-    "@angular/cli": "18.2.21",
+    "@angular/cli": "21.1.4",
     "@angular/compiler-cli": "18.2.14",
     "@angular/localize": "18.2.14",
     "@cypress/schematic": "4.3.0",
