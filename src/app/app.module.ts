@@ -21,14 +21,17 @@ import { PushPipe } from './push.pipe';
 registerLocaleData(localeFr);
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
-  declarations: [
-    TablesMultiplicationsAppComponent,
-    MenuComponent,
+  imports: [
+    BrowserModule,
+    FormsModule,
     TableMultiplicationComponent,
     RevisionTableComponent,
+    MenuComponent,
     MonFooterComponent,
-    PushPipe
+    PushPipe,
+  ],
+  declarations: [
+    TablesMultiplicationsAppComponent,
   ],
   providers: [
     {

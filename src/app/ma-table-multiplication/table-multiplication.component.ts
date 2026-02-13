@@ -4,6 +4,8 @@ import {
   Input,
   OnChanges
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PushPipe } from '../push.pipe';
 import { Observable, of, switchMap } from 'rxjs';
 
 @Component({
@@ -11,7 +13,8 @@ import { Observable, of, switchMap } from 'rxjs';
     templateUrl: './table-multiplication.component.html',
     styleUrls: ['./table-multiplication.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  standalone: true,
+  imports: [CommonModule, PushPipe]
 })
 export class TableMultiplicationComponent implements OnChanges {
   @Input()

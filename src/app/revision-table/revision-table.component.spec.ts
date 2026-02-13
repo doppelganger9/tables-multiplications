@@ -5,9 +5,8 @@ import { TestBed } from '@angular/core/testing';
 describe(`RevisionTableComponent`, () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [],
-      providers: [StateService],
-      declarations: [RevisionTableComponent]
+      imports: [RevisionTableComponent],
+      providers: [StateService]
     }).compileComponents();
   });
 

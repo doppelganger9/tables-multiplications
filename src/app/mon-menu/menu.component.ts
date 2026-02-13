@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { Observable, map } from 'rxjs';
 import { Action } from '../model';
 import { StateService } from '../store/state.service';
+import { CommonModule } from "@angular/common";
+import { PushPipe } from "../push.pipe";
 
 interface TMOption<T> {
   selected: boolean;
@@ -18,7 +20,8 @@ interface TMOption<T> {
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ CommonModule, PushPipe ]
 })
 export class MenuComponent implements OnInit {
   nombreChoisi$: Observable<number>;

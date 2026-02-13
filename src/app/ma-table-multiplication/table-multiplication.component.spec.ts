@@ -6,9 +6,9 @@ import { TestBed } from '@angular/core/testing';
 describe(`TableMultiplicationComponent`, () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [TableMultiplicationComponent],
       providers: [StateService],
-      declarations: [TableMultiplicationComponent]
+      declarations: []
     }).compileComponents();
   });
 

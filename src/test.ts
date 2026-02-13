@@ -8,7 +8,6 @@ import { getTestBed } from '@angular/core/testing';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
-import { PushPipe } from './app/push.pipe';
 
 Object.defineProperty(window, 'CSS', { value: null });
 Object.defineProperty(window, 'getComputedStyle', {
@@ -47,7 +46,6 @@ registerLocaleData(localeFr, 'fr-FR');
 
 beforeEach(() => {
   getTestBed().configureTestingModule({
-    declarations: [PushPipe],
     providers: [
       {
         provide: LOCALE_ID,

@@ -5,9 +5,8 @@ import { TestBed } from '@angular/core/testing';
 describe(`MenuComponent`, () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [MenuComponent],
       providers: [StateService],
-      declarations: [MenuComponent]
     }).compileComponents();
   });
 
