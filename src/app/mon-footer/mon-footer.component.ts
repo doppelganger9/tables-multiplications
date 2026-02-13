@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { Observable } from 'rxjs';
 import { StateService } from '../store/state.service';
 import { VersionData } from '../model';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
+import { PushPipe } from "../push.pipe";
 
 @Component({
     selector: 'app-footer',
@@ -10,7 +11,8 @@ import { DatePipe } from '@angular/common';
     styleUrls: ['./mon-footer.component.css'],
     providers: [DatePipe],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [CommonModule, DatePipe, PushPipe]
 })
 export class MonFooterComponent implements OnInit {
   version$: Observable<VersionData>;

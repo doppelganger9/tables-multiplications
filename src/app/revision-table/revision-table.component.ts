@@ -18,13 +18,17 @@ import {
 } from 'rxjs';
 import { Question } from '../model';
 import { StateService } from '../store/state.service';
+import { PushPipe } from "../push.pipe";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @Component({
     selector: 'app-revision-table',
     templateUrl: './revision-table.component.html',
     styleUrls: ['./revision-table.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [CommonModule, PushPipe, FormsModule]
 })
 export class RevisionTableComponent implements OnInit {
   @Input()

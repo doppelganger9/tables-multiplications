@@ -19,8 +19,9 @@ import { Observable, SubscriptionLike } from 'rxjs';
  * - https://github.com/manfredsteyer/articles/blob/master/angular-elements-without-zonejs.md
  */
 @Pipe({
-    name: 'push', pure: false,
-    standalone: false
+  name: 'push',
+  pure: false,
+  standalone: true
 })
 export class PushPipe implements OnDestroy, PipeTransform {
   private _latestValue: any = null;

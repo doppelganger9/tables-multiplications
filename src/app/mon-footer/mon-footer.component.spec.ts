@@ -8,7 +8,7 @@ import { VersionData } from '../model';
 describe(`MonFooterComponent`, () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [MonFooterComponent],
       providers: [
         {
           provide: StateService,
@@ -25,7 +25,6 @@ describe(`MonFooterComponent`, () => {
           } as Partial<StateService>
         }
       ],
-      declarations: [MonFooterComponent]
     }).compileComponents();
   });
 
