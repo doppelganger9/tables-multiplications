@@ -1,9 +1,9 @@
 /// <reference types="@angular/localize" />
 
 import { TablesMultiplicationsAppModule } from './app/app.module';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { platformBrowser } from '@angular/platform-browser';
 
-platformBrowserDynamic()
+platformBrowser()
   .bootstrapModule(TablesMultiplicationsAppModule, {
     ngZone: 'noop'
   })
