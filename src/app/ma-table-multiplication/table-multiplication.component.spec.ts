@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { describe, beforeEach, it, expect } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { StateService } from '../store/state.service';
 import { TableMultiplicationComponent } from './table-multiplication.component';
 import { TestBed } from '@angular/core/testing';

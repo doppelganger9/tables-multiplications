@@ -1,9 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject
+} from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Action } from '../model';
 import { StateService } from '../store/state.service';
 
-import { PushPipe } from "../push.pipe";
+import { PushPipe } from '../push.pipe';
 
 interface TMOption<T> {
   selected: boolean;
@@ -16,12 +21,12 @@ interface TMOption<T> {
  * et une action (afficher, réviser)
  */
 @Component({
-    selector: 'app-menu',
-    templateUrl: './menu.component.html',
-    styleUrls: ['./menu.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [PushPipe]
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [PushPipe]
 })
 export class MenuComponent implements OnInit {
   nombreChoisi$: Observable<number>;
