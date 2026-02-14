@@ -17,7 +17,7 @@ Voir https://doppelganger9.github.io/tables-multiplications/
 
 Pour aller plus loin, il y a aussi ces scripts NPM:
 
-- `npm run test` ou `npm t` : lance les tests unitaires Jest
+- `npm run test` ou `npm t` : lance les tests unitaires Vitest
 - `npm run e2e` : lance les tests End-to-End Cypress
 - `npm run lint`: vérifie le format du code JS/TS/HTML et corrige si possible avec ESLint
 - `npm run format`: formatte le code avec Prettier
@@ -27,7 +27,7 @@ Pour aller plus loin, il y a aussi ces scripts NPM:
 
 ## Notes
 
-Dans VSCode, si vous rencontrez un problème de conflit dans le typage des assertions des tests entre Chai et Jest, c'est qu'il faut réinstaller `local-cypress`, pour qu'il patche un fichier qui force des variables globales.
+Dans VSCode, si vous rencontrez un problème de conflit dans le typage des assertions des tests entre Chai et Vitest, c'est qu'il faut réinstaller `local-cypress`, pour qu'il patche un fichier qui force des variables globales.
 
 Voir [cet article](https://glebbahmutov.com/blog/local-cypress/), et vérifiez que le fichier `node_modules/cypress/types/index.d.ts` a bien été patché sur la ligne avec `cypress-global-vars`.
 

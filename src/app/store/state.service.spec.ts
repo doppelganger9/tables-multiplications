@@ -1,4 +1,6 @@
 import { StateService } from './state.service';
+
+import { describe, beforeEach, it, expect } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 
 describe(`StateService`, () => {

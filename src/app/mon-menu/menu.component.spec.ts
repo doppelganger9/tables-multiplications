@@ -1,4 +1,6 @@
 import { MenuComponent } from './menu.component';
+
+import { describe, beforeEach, it, expect } from 'vitest';
 import { StateService } from '../store/state.service';
 import { TestBed } from '@angular/core/testing';
 
