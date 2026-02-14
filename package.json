@@ -10,6 +10,7 @@
     "prebuild": "node ./build/git-info.mjs",
     "build": "ng build",
     "test": "TZ=UTC npx jest",
+    "vitest": "TZ=UTC ng test",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
     "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,html}' --quiet --fix",
