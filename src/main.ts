@@ -1,17 +1,38 @@
 /// <reference types="@angular/localize" />
 
-import { TablesMultiplicationsAppModule } from './app/app.module';
-import { platformBrowser } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import { bootstrapApplication } from '@angular/platform-browser';
+import localeFr from '@angular/common/locales/fr';
+import { TablesMultiplicationsAppComponent } from './app/app.component';
+import { LOCALE_ID } from '@angular/core';
+import { StateService } from './app/store/state.service';
+import { createCustomElement } from '@angular/elements';
 
-platformBrowser()
-  .bootstrapModule(TablesMultiplicationsAppModule)
-  .then((ref) => {
-    // Ensure Angular destroys itself on hot reloads.
+registerLocaleData(localeFr);
+
+bootstrapApplication(TablesMultiplicationsAppComponent, {
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'fr-FR'
+    },
+    StateService
+  ]
+})
+  .then((appRef) => {
+    // Create custom element
+    const customElement = createCustomElement(
+      TablesMultiplicationsAppComponent,
+      {
+        injector: appRef.injector
+      }
+    );
+    customElements.define('tables-multiplications-app', customElement);
+
+    // Hot reload cleanup
     if (window['ngRef']) {
       window['ngRef'].destroy();
     }
-    window['ngRef'] = ref;
-
-    // Otherwise, log the boot error
+    window['ngRef'] = appRef;
   })
   .catch((err) => console.error(err));

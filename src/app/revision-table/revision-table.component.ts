@@ -1,9 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   Input,
-  OnInit
+  OnInit,
+  inject
 } from '@angular/core';
 import {
   EMPTY,
@@ -18,17 +18,17 @@ import {
 } from 'rxjs';
 import { Question } from '../model';
 import { StateService } from '../store/state.service';
-import { PushPipe } from "../push.pipe";
+import { PushPipe } from '../push.pipe';
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-revision-table',
-    templateUrl: './revision-table.component.html',
-    styleUrls: ['./revision-table.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [PushPipe, FormsModule]
+  selector: 'app-revision-table',
+  templateUrl: './revision-table.component.html',
+  styleUrls: ['./revision-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [PushPipe, FormsModule]
 })
 export class RevisionTableComponent implements OnInit {
   @Input()

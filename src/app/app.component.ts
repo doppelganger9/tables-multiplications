@@ -1,18 +1,47 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  LOCALE_ID,
+  OnInit,
+  inject
+} from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Action } from './model';
 import { StateService } from './store/state.service';
+import { TableMultiplicationComponent } from './ma-table-multiplication/table-multiplication.component';
+import { RevisionTableComponent } from './revision-table/revision-table.component';
+import { MenuComponent } from './mon-menu/menu.component';
+import { MonFooterComponent } from './mon-footer/mon-footer.component';
+import { PushPipe } from './push.pipe';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 /**
  * Gère l'app dans sa globalité en propageant aux composant fils et
  * appelant les services.
  */
 @Component({
-    selector: 'app-shell',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'tables-multiplications-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    BrowserModule,
+    FormsModule,
+    TableMultiplicationComponent,
+    RevisionTableComponent,
+    MenuComponent,
+    MonFooterComponent,
+    PushPipe
+  ],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'fr-FR'
+    },
+    StateService
+  ],
+  standalone: true
 })
 export class TablesMultiplicationsAppComponent implements OnInit {
   nombreChoisi$: Observable<number>;

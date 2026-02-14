@@ -9,10 +9,10 @@ import { PushPipe } from '../push.pipe';
 import { Observable, of, switchMap } from 'rxjs';
 
 @Component({
-    selector: 'app-table-multiplication',
-    templateUrl: './table-multiplication.component.html',
-    styleUrls: ['./table-multiplication.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-table-multiplication',
+  templateUrl: './table-multiplication.component.html',
+  styleUrls: ['./table-multiplication.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [PushPipe]
 })

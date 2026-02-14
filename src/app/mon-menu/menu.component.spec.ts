@@ -1,6 +1,6 @@
 import { MenuComponent } from './menu.component';
 
-import { describe, beforeEach, it, expect } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { StateService } from '../store/state.service';
 import { TestBed } from '@angular/core/testing';
 
@@ -8,7 +8,7 @@ describe(`MenuComponent`, () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [MenuComponent],
-      providers: [StateService],
+      providers: [StateService]
     }).compileComponents();
   });
 
