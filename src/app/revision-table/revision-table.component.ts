@@ -19,7 +19,7 @@ import {
 import { Question } from '../model';
 import { StateService } from '../store/state.service';
 import { PushPipe } from "../push.pipe";
-import { CommonModule } from "@angular/common";
+
 import { FormsModule } from "@angular/forms";
 
 @Component({
@@ -28,7 +28,7 @@ import { FormsModule } from "@angular/forms";
     styleUrls: ['./revision-table.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CommonModule, PushPipe, FormsModule]
+    imports: [PushPipe, FormsModule]
 })
 export class RevisionTableComponent implements OnInit {
   @Input()
