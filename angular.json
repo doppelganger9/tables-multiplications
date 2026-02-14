@@ -60,7 +60,8 @@
             "buildTarget": "tables-multiplications:build:test",
             "tsConfig": "src/tsconfig-vitest.spec.json",
             "runner": "vitest",
-            "providersFile": "src/vitest-providers.ts"
+            "providersFile": "src/vitest-providers.ts",
+            "runnerConfig": "vitest.config.ts"
           }
         },
         "serve": {
