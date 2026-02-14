@@ -3,7 +3,8 @@ import {
   EventEmitter,
   OnDestroy,
   Pipe,
-  PipeTransform
+  PipeTransform,
+  inject
 } from '@angular/core';
 import { Observable, SubscriptionLike } from 'rxjs';
 
@@ -30,7 +31,7 @@ export class PushPipe implements OnDestroy, PipeTransform {
   private _subscription: SubscriptionLike | null = null;
   private _obj: Observable<any> | EventEmitter<any> | null = null;
 
-  constructor(private _ref: ChangeDetectorRef) {}
+  private _ref = inject(ChangeDetectorRef);
 
   ngOnDestroy(): void {
     if (this._subscription) {
