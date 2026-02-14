@@ -52,6 +52,15 @@
             }
           }
         },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "tables-multiplications:build",
+            "tsConfig": "src/tsconfig-vitest.spec.json",
+            "runner": "vitest",
+            "providersFile": "src/vitest-providers.ts"
+          }
+        },
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
