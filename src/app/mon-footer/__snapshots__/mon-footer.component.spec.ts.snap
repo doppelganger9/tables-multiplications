@@ -5,7 +5,7 @@ exports[`MonFooterComponent should render the version from stateService 1`] = `
   data-e2e="version-container"
 >
   <span
-    title="Version test - fake - mercredi 18 octobre 2023 à 18:52:16 GMT+00:00 "
+    title="Version test - fake - mercredi 18 octobre 2023, 18:52:16 GMT+00:00 "
   >
     vtest
   </span>
