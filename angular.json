@@ -36,6 +36,8 @@
             "namedChunks": true
           },
           "configurations": {
+            "test" : {
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -55,7 +57,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "buildTarget": "tables-multiplications:build",
+            "buildTarget": "tables-multiplications:build:test",
             "tsConfig": "src/tsconfig-vitest.spec.json",
             "runner": "vitest",
             "providersFile": "src/vitest-providers.ts"
