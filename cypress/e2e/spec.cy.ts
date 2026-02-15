@@ -55,19 +55,19 @@ describe('My First Test', () => {
       const result = (+a)*(+b); // side-effect
       cy.get('#reponse').should('be.visible').type(''+result);
       cy.get('[name="submit"]').click();
-      cy.get('[data-e2e="good-answer"').should('be.visible');
-      cy.get('[data-e2e="bad-answer"').should('not.exist');
+      cy.get('[data-e2e="good-answer"]').should('be.visible');
+      cy.get('[data-e2e="bad-answer"]').should('not.exist');
     })
 
     cy.get('[data-e2e="btn-next-question"]').should('be.visible').click()
-    cy.get('[data-e2e="good-answer"').should('not.exist');
-    cy.get('[data-e2e="bad-answer"').should('not.exist');
+    cy.get('[data-e2e="good-answer"]').should('not.exist');
+    cy.get('[data-e2e="bad-answer"]').should('not.exist');
     cy.get('.question').should('be.visible').invoke('text').should('match', /Combien font \d+ fois \d+ ?/).then(content => {
       const result = 438427;
       cy.get('#reponse').should('be.visible').type(''+result);
       cy.get('[name="submit"]').click();
-      cy.get('[data-e2e="good-answer"').should('not.exist');
-      cy.get('[data-e2e="bad-answer"').should('be.visible');
+      cy.get('[data-e2e="good-answer"]').should('not.exist');
+      cy.get('[data-e2e="bad-answer"]').should('be.visible');
     })
 
   })

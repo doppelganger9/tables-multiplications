@@ -97,11 +97,27 @@ export class RevisionTableComponent implements OnInit {
   }
 
   clicQuestionSuivante(): RxJsObservable<Question> {
+    // remise à vide du champs réponse
+    this.reponse = '';
+    // focus sur le champs réponse
+    setTimeout(() => {
+      const reponseInput = document.getElementById('reponse');
+      if (reponseInput) {
+        reponseInput.focus();
+      }
+    }, 0);
     return this.stateService.generateNewQuestion();
   }
 
   clicValiderReponse(): RxJsObservable<Question> {
     const total = 0 + Number(this.reponse);
+    // focus sur le champs réponse
+    setTimeout(() => {
+      const btnNextQuestion = document.getElementById('btn-next-question');
+      if (btnNextQuestion) {
+        btnNextQuestion.focus();
+      }
+    }, 0);
 
     return this.stateService.soumettreReponse(total).pipe(
       switchMap((reponse) => {
