@@ -27,7 +27,7 @@ bootstrapApplication(TablesMultiplicationsAppComponent, {
         injector: appRef.injector
       }
     );
-    customElements.define('tables-multiplications-app', customElement);
+    customElements.define('app-tables-multiplications', customElement);
 
     // Hot reload cleanup
     if (window['ngRef']) {

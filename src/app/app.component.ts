@@ -21,7 +21,7 @@ import { BrowserModule } from '@angular/platform-browser';
  * appelant les services.
  */
 @Component({
-  selector: 'tables-multiplications-app',
+  selector: 'app-tables-multiplications',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

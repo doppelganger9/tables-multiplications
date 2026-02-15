@@ -36,7 +36,6 @@ export default [{
     languageOptions: {
         globals: {
             ...globals.browser,
-            ...globals.jest,
         },
 
         ecmaVersion: 5,
