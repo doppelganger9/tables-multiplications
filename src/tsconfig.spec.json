@@ -9,7 +9,6 @@
     "emitDecoratorMetadata": true
   },
   "files": [
-    "test.ts"
   ],
   "include": [
     "**/*.spec.ts",
