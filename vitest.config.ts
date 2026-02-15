@@ -1,6 +1,10 @@
 import { defineConfig } from 'vitest/config';
 
 /**
+ * Ce fichier est chargé par Vitest, que ce soit en direct `npx vitest` 
+ * ou via `ng test` avec la configuration de Angular. Y compris par une extension VSCode 
+ * pour le test runner Vitest.
+ * 
  * Afin de pouvoir faire du snapshot testing avec Vitest et Angular, 
  * il est nécessaire d'ajouter les serializers de jest-preset-angular.
  * 
@@ -25,6 +29,11 @@ import { defineConfig } from 'vitest/config';
  */
 export default defineConfig({
   test: {
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'lcov'],
+      reportsDirectory: 'coverage/table-multiplication',
+    },
     snapshotSerializers: [
       'jest-preset-angular/build/serializers/html-comment',
       'jest-preset-angular/build/serializers/ng-snapshot',
