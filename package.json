@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "An angular App, to learm multiplication tables",
   "private": true,
+  "engines": {
+    "node": ">=20 <=25",
+    "npm": ">=10 <=11"
+  },
   "scripts": {
     "ng": "ng",
     "prestart": "node ./build/git-info.mjs",
