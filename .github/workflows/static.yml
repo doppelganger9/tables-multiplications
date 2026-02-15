@@ -35,7 +35,7 @@ jobs:
         with:
           cache: 'npm'
       - name: Clean Install deps
-        run: npm ci --legacy-peer-deps
+        run: npm ci
       - name: Build Angular Element Web Component
         run: npm run wc:build
       - name: Check Linting
@@ -44,7 +44,7 @@ jobs:
         run: npm run lint:css
       - name: Run tests and collect code coverage
         run: |
-          npm run test
+          npm run test:ci
           ls -l coverage
           ls -l coverage/table-multiplication
       - name: Coveralls GitHub Action
