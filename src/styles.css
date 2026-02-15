@@ -1,4 +1,6 @@
 /* Add application styles & imports to this file! */
+@import url('@picocss/pico/css/pico.min.css');
+
 .boot-loader {
   padding-top: 40%;
   text-align: center;

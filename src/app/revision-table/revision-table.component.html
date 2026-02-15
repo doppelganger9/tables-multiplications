@@ -1,15 +1,13 @@
 <article>
-  <form (submit)="clicValiderReponse()">
-    <button
-      data-e2e="btn-next-question"
-      type="button"
-      (click)="clicQuestionSuivante()"
-      >
-      Question Suivante !
-    </button>
-    <br />
-
-    @if (afficherLaDerniereQuestion$ | async) {
+  @if (afficherLaDerniereQuestion$ | async) {
+    <form (submit)="clicValiderReponse()">
+      <input
+        id="btn-validate-answer"
+        type="submit"
+        name="submit"
+        data-e2e="btn-validate-answer"
+        value="Valider (ou touche entrée)" />
+      <br />
       <div>
         <p class="question">
           Combien font {{ (question$ | async)?.nombre }} fois
@@ -17,31 +15,40 @@
         </p>
         <label for="reponse">Ta réponse : </label
           ><input name="reponse" [(ngModel)]="reponse" id="reponse" type="number" />
-          <input name="submit" type="submit" value="Valider (ou touche entrée)" />
-        </div>
-      }
-      @if (afficherFlashMessageBonneReponse$ | async) {
-        <h2
-          data-e2e="good-answer"
-          class="correcte"
-          >
-          ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
-        </h2>
-      }
-      @if (afficherFlashMessageMauvaiseReponse$ | async) {
-        <h2
-          data-e2e="bad-answer"
-          class="incorrecte"
-          >
-          🙀 MAUVAISE REPONSE, ESSAIES ENCORE !!<!-- TODO varier le message dans une liste random -->
-        </h2>
-      }
+      </div>      
     </form>
-    <!--
+  } @else {
+    <form (submit)="clicQuestionSuivante()">
+      <input
+        id="btn-next-question"
+        type="submit"
+        name="submit"
+        data-e2e="btn-next-question"
+        value="Question Suivante !" />
+      <br />
+    </form><!--
     TODO afficher les statistiques en cours.
     pour chaque question : le temps entre
     l'affichage de la question et chaque proposition de solution ; jusqu'à ce que
     la solution soit la bonne. Ne pas utiliser de setInterval ou setTimeout ;
     enregistrer le temps actuel au moment où l'utilisateur VALIDE sa saisie (ENTER
     ou bouton pour valider)
-  --></article>
+  -->
+  }
+  @if (afficherFlashMessageMauvaiseReponse$ | async) {
+      <h2
+        data-e2e="bad-answer"
+        class="incorrecte"
+        >
+        🙀 MAUVAISE REPONSE, ESSAIES ENCORE !!<!-- TODO varier le message dans une liste random -->
+      </h2>
+  }
+  @if (afficherFlashMessageBonneReponse$ | async) {
+      <h2
+        data-e2e="good-answer"
+        class="correcte"
+        >
+        ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
+      </h2>
+  }
+</article>
