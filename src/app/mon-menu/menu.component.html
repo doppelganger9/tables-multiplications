@@ -1,6 +1,6 @@
 <label for="select-action">Tu veux </label>
 <select id="select-action" (change)="choisirAction($event)">
-  @for (btn of optionActions$ | push; track btn) {
+  @for (btn of optionActions$ | async; track btn) {
     <option
       [selected]="btn.selected"
       [label]="btn.label"
@@ -11,7 +11,7 @@
 
 <label for="select-nombre"> la table des </label>
 <select id="select-nombre" (change)="choisirNombre($event)">
-  @for (btn of optionNombres$ | push; track btn) {
+  @for (btn of optionNombres$ | async; track btn) {
     <option
       [selected]="btn.selected"
       [label]="btn.label"

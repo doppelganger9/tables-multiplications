@@ -7,8 +7,7 @@ import {
 import { Observable } from 'rxjs';
 import { StateService } from '../store/state.service';
 import { VersionData } from '../model';
-import { CommonModule, DatePipe } from '@angular/common';
-import { PushPipe } from '../push.pipe';
+import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +16,7 @@ import { PushPipe } from '../push.pipe';
   providers: [DatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, DatePipe, PushPipe]
+  imports: [CommonModule, DatePipe, AsyncPipe]
 })
 export class MonFooterComponent implements OnInit {
   version$: Observable<VersionData>;

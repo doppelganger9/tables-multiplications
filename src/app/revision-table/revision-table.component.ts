@@ -18,9 +18,8 @@ import {
 } from 'rxjs';
 import { Question } from '../model';
 import { StateService } from '../store/state.service';
-import { PushPipe } from '../push.pipe';
-
 import { FormsModule } from '@angular/forms';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-revision-table',
@@ -28,7 +27,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./revision-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [PushPipe, FormsModule]
+  imports: [AsyncPipe, FormsModule]
 })
 export class RevisionTableComponent implements OnInit {
   @Input()

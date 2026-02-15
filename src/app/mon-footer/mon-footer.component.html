@@ -1,9 +1,9 @@
 <div data-e2e="version-container">
   <span
-    title="Version {{ (version$ | push)?.version }} - {{
-      (version$ | push)?.shortSHA
-    }} - {{ (version$ | push)?.lastCommitTime | date: 'full' }} "
-    >v{{ (version$ | push)?.version }}</span
+    title="Version {{ (version$ | async)?.version }} - {{
+      (version$ | async)?.shortSHA
+    }} - {{ (version$ | async)?.lastCommitTime | date: 'full' }} "
+    >v{{ (version$ | async)?.version }}</span
   >
   &nbsp;-&nbsp;
   <span
