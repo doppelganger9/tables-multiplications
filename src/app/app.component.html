@@ -1,6 +1,6 @@
 <h1>Les tables de multiplication</h1>
 <app-menu></app-menu>
-@if (modeAffichage$ | push) {
+@if (modeAffichage$ | async) {
   <app-table-multiplication
     [nombre$]="nombreChoisi$"
   ></app-table-multiplication>

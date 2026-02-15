@@ -7,9 +7,9 @@
       </tr>
     </thead>
     <tbody>
-      @for (n of tableMultiplication$ | push; track n; let i = $index) {
+      @for (n of tableMultiplication$ | async; track n; let i = $index) {
         <tr>
-          <td>{{ i + 1 }} x {{ nombre$ | push }}</td>
+          <td>{{ i + 1 }} x {{ nombre$ | async }}</td>
           <td>{{ n }}</td>
         </tr>
       }

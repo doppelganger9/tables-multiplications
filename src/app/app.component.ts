@@ -12,9 +12,9 @@ import { TableMultiplicationComponent } from './ma-table-multiplication/table-mu
 import { RevisionTableComponent } from './revision-table/revision-table.component';
 import { MenuComponent } from './mon-menu/menu.component';
 import { MonFooterComponent } from './mon-footer/mon-footer.component';
-import { PushPipe } from './push.pipe';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AsyncPipe } from '@angular/common';
 
 /**
  * Gère l'app dans sa globalité en propageant aux composant fils et
@@ -32,7 +32,7 @@ import { BrowserModule } from '@angular/platform-browser';
     RevisionTableComponent,
     MenuComponent,
     MonFooterComponent,
-    PushPipe
+    AsyncPipe
   ],
   providers: [
     {

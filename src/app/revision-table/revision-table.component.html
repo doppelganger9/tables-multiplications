@@ -9,18 +9,18 @@
     </button>
     <br />
 
-    @if (afficherLaDerniereQuestion$ | push) {
+    @if (afficherLaDerniereQuestion$ | async) {
       <div>
         <p class="question">
-          Combien font {{ (question$ | push)?.nombre }} fois
-          {{ (question$ | push)?.operande }} ?
+          Combien font {{ (question$ | async)?.nombre }} fois
+          {{ (question$ | async)?.operande }} ?
         </p>
         <label for="reponse">Ta réponse : </label
           ><input name="reponse" [(ngModel)]="reponse" id="reponse" type="number" />
           <input name="submit" type="submit" value="Valider (ou touche entrée)" />
         </div>
       }
-      @if (afficherFlashMessageBonneReponse$ | push) {
+      @if (afficherFlashMessageBonneReponse$ | async) {
         <h2
           data-e2e="good-answer"
           class="correcte"
@@ -28,7 +28,7 @@
           ✅ BRAVO, BONNE REPONSE !!<!-- TODO varier le message dans une liste random -->
         </h2>
       }
-      @if (afficherFlashMessageMauvaiseReponse$ | push) {
+      @if (afficherFlashMessageMauvaiseReponse$ | async) {
         <h2
           data-e2e="bad-answer"
           class="incorrecte"
