@@ -4,7 +4,7 @@ import {
   OnInit,
   inject
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable as RxJsObservable } from 'rxjs';
 import { StateService } from '../store/state.service';
 import { VersionData } from '../model';
 import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
@@ -19,7 +19,7 @@ import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
   imports: [CommonModule, DatePipe, AsyncPipe]
 })
 export class MonFooterComponent implements OnInit {
-  version$: Observable<VersionData>;
+  version$: RxJsObservable<VersionData>;
 
   private readonly stateService: StateService = inject(StateService);
 

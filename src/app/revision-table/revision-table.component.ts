@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import {
   EMPTY,
-  Observable,
+  Observable as RxJsObservable,
   combineLatest,
   concat,
   filter,
@@ -31,13 +31,13 @@ import { AsyncPipe } from '@angular/common';
 })
 export class RevisionTableComponent implements OnInit {
   @Input()
-  nombre$: Observable<number>;
+  nombre$: RxJsObservable<number>;
 
-  question$: Observable<Question>;
-  questions$: Observable<Array<Question>>; // TODO voir si on le garde ou pas
-  afficherLaDerniereQuestion$: Observable<boolean>;
-  afficherFlashMessageBonneReponse$: Observable<boolean>;
-  afficherFlashMessageMauvaiseReponse$: Observable<boolean>;
+  question$: RxJsObservable<Question>;
+  questions$: RxJsObservable<Array<Question>>; // TODO voir si on le garde ou pas
+  afficherLaDerniereQuestion$: RxJsObservable<boolean>;
+  afficherFlashMessageBonneReponse$: RxJsObservable<boolean>;
+  afficherFlashMessageMauvaiseReponse$: RxJsObservable<boolean>;
 
   reponse: string; // simple template-driven form
 
@@ -96,11 +96,11 @@ export class RevisionTableComponent implements OnInit {
       );
   }
 
-  clicQuestionSuivante(): Observable<Question> {
+  clicQuestionSuivante(): RxJsObservable<Question> {
     return this.stateService.generateNewQuestion();
   }
 
-  clicValiderReponse(): Observable<Question> {
+  clicValiderReponse(): RxJsObservable<Question> {
     const total = 0 + Number(this.reponse);
 
     return this.stateService.soumettreReponse(total).pipe(

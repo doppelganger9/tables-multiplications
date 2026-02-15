@@ -5,7 +5,7 @@ import {
   OnInit,
   inject
 } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable as RxJsObservable, map } from 'rxjs';
 import { Action } from './model';
 import { StateService } from './store/state.service';
 import { TableMultiplicationComponent } from './ma-table-multiplication/table-multiplication.component';
@@ -44,9 +44,9 @@ import { AsyncPipe } from '@angular/common';
   standalone: true
 })
 export class TablesMultiplicationsAppComponent implements OnInit {
-  nombreChoisi$: Observable<number>;
-  actionChoisie$: Observable<Action>;
-  modeAffichage$: Observable<boolean>;
+  nombreChoisi$: RxJsObservable<number>;
+  actionChoisie$: RxJsObservable<Action>;
+  modeAffichage$: RxJsObservable<boolean>;
 
   private readonly stateService: StateService = inject(StateService);
 

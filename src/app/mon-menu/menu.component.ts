@@ -4,7 +4,7 @@ import {
   OnInit,
   inject
 } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable as RxJsObservable, map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Action } from '../model';
 import { StateService } from '../store/state.service';
@@ -28,10 +28,10 @@ interface TMOption<T> {
   imports: [AsyncPipe]
 })
 export class MenuComponent implements OnInit {
-  nombreChoisi$: Observable<number>;
-  actionChoisie$: Observable<Action>;
-  optionNombres$: Observable<Array<TMOption<number>>>;
-  optionActions$: Observable<Array<TMOption<Action>>>;
+  nombreChoisi$: RxJsObservable<number>;
+  actionChoisie$: RxJsObservable<Action>;
+  optionNombres$: RxJsObservable<Array<TMOption<number>>>;
+  optionActions$: RxJsObservable<Array<TMOption<Action>>>;
 
   private readonly stateService: StateService = inject(StateService);
 
@@ -46,12 +46,12 @@ export class MenuComponent implements OnInit {
     );
   }
 
-  choisirNombre(event: any): Observable<void> {
+  choisirNombre(event: any): RxJsObservable<void> {
     const nombreChoisi: number = +event.target.value;
     return this.stateService.updateNombreChoisi(nombreChoisi);
   }
 
-  choisirAction(event: any): Observable<void> {
+  choisirAction(event: any): RxJsObservable<void> {
     const actionChoisie: Action = event.target.value;
     return this.stateService.updateActionChoisie(actionChoisie);
   }
