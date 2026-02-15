@@ -22,7 +22,7 @@ jobs:
         with:
           cache: 'npm'
       - name: Clean Install deps
-        run: npm ci --legacy-peer-deps
+        run: npm ci
       - name: Build Angular Element Web Component
         run: npm run wc:build
       - name: Check Linting
@@ -30,8 +30,7 @@ jobs:
       - name: Check CSS Linting
         run: npm run lint:css
       - name: Run tests and collect code coverage
-        run: |
-          npm run test
+        run: npm run test:ci
       - name: Check E2E tests
         run: npm run test:e2e
         env:
