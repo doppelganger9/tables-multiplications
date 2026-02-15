@@ -5,7 +5,13 @@ import {
   StatistiqueReponses,
   VersionData
 } from '../model';
-import { BehaviorSubject, EMPTY, Observable, map, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  EMPTY,
+  Observable as RxJsObservable,
+  map,
+  of
+} from 'rxjs';
 import { Injectable } from '@angular/core';
 
 /**
@@ -14,9 +20,9 @@ import { Injectable } from '@angular/core';
  *
  * La vue appelle des actions.
  * Ces actions mettent à jour l'état interne de ce service.
- * Une action est par convention nommée `verbeObjet(...donnéesObjet...): Observable<void|Objet>`
+ * Une action est par convention nommée `verbeObjet(...donnéesObjet...): RxJsObservable<void|Objet>`
  * La vue s'abonne et Observe des données dérivées de cet état interne et se met à jour en conséquence.
- * Ces sélecteurs sont `getXXXX: Observable<xxx>`
+ * Ces sélecteurs sont `getXXXX: RxJsObservable<xxx>`
  */
 @Injectable()
 export class StateService {
@@ -42,13 +48,13 @@ export class StateService {
   }
 
   // SELECTION
-  getNombreChoisi(): Observable<number> {
+  getNombreChoisi(): RxJsObservable<number> {
     return this.nombreChoisi$.asObservable();
     //      .pipe(tap((nb) => console.log('nombre a changé : ' + nb)))
   }
 
   // ACTION
-  updateNombreChoisi(nombre: number): Observable<void> {
+  updateNombreChoisi(nombre: number): RxJsObservable<void> {
     console.log('state update nombre : ' + nombre);
     this.nombreChoisi$.next(nombre);
     // et invalider les questions en cours
@@ -56,13 +62,13 @@ export class StateService {
   }
 
   // SELECTION
-  getActionChoisie(): Observable<Action> {
+  getActionChoisie(): RxJsObservable<Action> {
     return this.actionChoisie$.asObservable();
     //      .pipe(tap((a) => console.log('action a changé : ' + a)))
   }
 
   // ACTION
-  updateActionChoisie(action: Action): Observable<void> {
+  updateActionChoisie(action: Action): RxJsObservable<void> {
     console.log('state update action : ' + action);
     this.actionChoisie$.next(action);
     // et invalider les questions en cours
@@ -70,7 +76,7 @@ export class StateService {
   }
 
   // SELECTION
-  getLastQuestion(): Observable<Question> {
+  getLastQuestion(): RxJsObservable<Question> {
     // ne pas utiliser last ou autre car on emet la liste des question et on aurait que la derniere liste de questions
     // ce qu'on veut c'est la dernière question lorsque une nouvelle liste de question est émise.
     return this.questions$.asObservable().pipe(
@@ -84,7 +90,7 @@ export class StateService {
       //      )
     );
   }
-  getQuestions(): Observable<Array<Question>> {
+  getQuestions(): RxJsObservable<Array<Question>> {
     return this.questions$.asObservable();
     //      .pipe(
     //        tap((q) => console.log('questions changées : ' + JSON.stringify(q)))
@@ -92,7 +98,7 @@ export class StateService {
   }
 
   // ACTION
-  generateNewQuestion(): Observable<Question> {
+  generateNewQuestion(): RxJsObservable<Question> {
     // sélections état interne
     const questions = this.questions$.getValue();
     const nombre = this.nombreChoisi$.getValue();
@@ -113,13 +119,15 @@ export class StateService {
   }
 
   // SELECTION
-  getReponses(): Observable<Array<Reponse>> {
+  getReponses(): RxJsObservable<Array<Reponse>> {
     return this.reponses$.asObservable();
     //.pipe(tap((x) => console.log(`reponses mis à jour`, x)))
   }
 
   // SELECTION avec calculs dérivés
-  getStatistiquesReponsesGlobales(): Observable<Array<StatistiqueReponses>> {
+  getStatistiquesReponsesGlobales(): RxJsObservable<
+    Array<StatistiqueReponses>
+  > {
     return this.reponses$.pipe(
       map((reponses) => {
         const reponseByNombre = {};
@@ -169,7 +177,7 @@ export class StateService {
   }
 
   // ACTION
-  terminerToutesLesQuestions(): Observable<void> {
+  terminerToutesLesQuestions(): RxJsObservable<void> {
     // sélection store interne
     const questions = this.questions$.getValue();
     if (questions && questions.length > 0) {
@@ -180,7 +188,7 @@ export class StateService {
   }
 
   // ACTION
-  soumettreReponse(reponse: number): Observable<Reponse> {
+  soumettreReponse(reponse: number): RxJsObservable<Reponse> {
     // sélection store interne
     const reponses = this.reponses$.getValue();
     const questions = this.questions$.getValue();
@@ -221,8 +229,8 @@ export class StateService {
   }
 
   // SELECTION
-  getVersion(): Observable<VersionData> {
-    return new Observable((subscriber) => {
+  getVersion(): RxJsObservable<VersionData> {
+    return new RxJsObservable((subscriber) => {
       Promise.all([import('package.json'), import('src/git-version.json')])
         .then(([packageJson, gitVersionJson]) => {
           const lastCommitTime = gitVersionJson?.lastCommitTime;

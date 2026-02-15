@@ -5,7 +5,7 @@ import {
   OnChanges
 } from '@angular/core';
 
-import { Observable, of, switchMap } from 'rxjs';
+import { Observable as RxJsObservable, of, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -18,8 +18,8 @@ import { AsyncPipe } from '@angular/common';
 })
 export class TableMultiplicationComponent implements OnChanges {
   @Input()
-  nombre$: Observable<number>;
-  tableMultiplication$: Observable<Array<number>>;
+  nombre$: RxJsObservable<number>;
+  tableMultiplication$: RxJsObservable<Array<number>>;
 
   ngOnChanges() {
     this.tableMultiplication$ = this.nombre$.pipe(
