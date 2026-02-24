@@ -53,7 +53,7 @@
     "@angular/compiler-cli": "21.1.5",
     "@angular/localize": "21.1.5",
     "@cypress/schematic": "5.0.0",
-    "@eslint/eslintrc": "3.3.3",
+    "@eslint/eslintrc": "3.3.4",
     "@eslint/js": "9.39.3",
     "@typescript-eslint/eslint-plugin": "8.56.0",
     "@typescript-eslint/parser": "8.56.0",
