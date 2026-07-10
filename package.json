@@ -67,7 +67,7 @@
     "jest-preset-angular": "16.2.0",
     "jsdom": "28.1.0",
     "local-cypress": "1.2.8",
-    "prettier": "3.8.3",
+    "prettier": "3.9.5",
     "start-server-and-test": "2.1.5",
     "stylelint": "17.13.0",
     "stylelint-config-standard": "40.0.0",
