@@ -44,9 +44,9 @@ import { AsyncPipe } from '@angular/common';
   standalone: true
 })
 export class TablesMultiplicationsAppComponent implements OnInit {
-  nombreChoisi$: RxJsObservable<number>;
-  actionChoisie$: RxJsObservable<Action>;
-  modeAffichage$: RxJsObservable<boolean>;
+  nombreChoisi$!: RxJsObservable<number>;
+  actionChoisie$!: RxJsObservable<Action>;
+  modeAffichage$!: RxJsObservable<boolean>;
 
   private readonly stateService: StateService = inject(StateService);
 
