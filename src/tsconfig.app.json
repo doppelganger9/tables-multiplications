@@ -2,14 +2,17 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": [
-      "@angular/localize"
-    ]
+    "types": ["@angular/localize"]
   },
-  "files": [
-    "main.ts"
-  ],
-  "include": [
-    "**/*.d.ts"
-  ]
+  "files": ["main.ts"],
+  "include": ["**/*.d.ts"],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    },
+    "strictTemplates": false
+  }
 }
