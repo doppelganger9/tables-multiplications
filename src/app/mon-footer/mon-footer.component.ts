@@ -19,7 +19,7 @@ import { AsyncPipe, CommonModule, DatePipe } from '@angular/common';
   imports: [CommonModule, DatePipe, AsyncPipe]
 })
 export class MonFooterComponent implements OnInit {
-  version$: RxJsObservable<VersionData>;
+  version$!: RxJsObservable<VersionData>;
 
   private readonly stateService: StateService = inject(StateService);
 

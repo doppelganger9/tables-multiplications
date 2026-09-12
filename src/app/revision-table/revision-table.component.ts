@@ -31,15 +31,15 @@ import { AsyncPipe } from '@angular/common';
 })
 export class RevisionTableComponent implements OnInit {
   @Input()
-  nombre$: RxJsObservable<number>;
+  nombre$!: RxJsObservable<number>;
 
-  question$: RxJsObservable<Question>;
-  questions$: RxJsObservable<Array<Question>>; // TODO voir si on le garde ou pas
-  afficherLaDerniereQuestion$: RxJsObservable<boolean>;
-  afficherFlashMessageBonneReponse$: RxJsObservable<boolean>;
-  afficherFlashMessageMauvaiseReponse$: RxJsObservable<boolean>;
+  question$!: RxJsObservable<Question | null>;
+  questions$!: RxJsObservable<Array<Question>>; // TODO voir si on le garde ou pas
+  afficherLaDerniereQuestion$!: RxJsObservable<boolean>;
+  afficherFlashMessageBonneReponse$!: RxJsObservable<boolean>;
+  afficherFlashMessageMauvaiseReponse$!: RxJsObservable<boolean>;
 
-  reponse: string; // simple template-driven form
+  reponse = ''; // simple template-driven form
 
   private readonly stateService: StateService = inject(StateService);
 
