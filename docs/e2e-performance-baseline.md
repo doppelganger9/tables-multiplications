@@ -52,3 +52,21 @@ Apres migration, reprendre les memes mesures et conserver le meme perimetre :
 6. Comparer les artefacts de diagnostic produits en cas d'echec : taille du rapport, traces, captures et videos.
 
 La comparaison doit utiliser le meme nombre de tests, le meme mode headless, le meme navigateur et un cache CI explicitement indique.
+
+## Mesures apres migration
+
+Date de mesure : 2026-09-12
+Solution mesuree : Playwright 1.63.0 avec Chromium headless
+
+| Metrique | Avant, Cypress | Apres, Playwright | Ecart observe |
+| --- | ---: | ---: | ---: |
+| `npm ci` | 11,84 s | 10,21 s | -1,63 s, -13,8 % |
+| Paquets installes | 1 049 | 914 | -135, -12,9 % |
+| `node_modules` | 437 Mo | 426 Mo | -11 Mo, -2,5 % |
+| Cache navigateur principal | Cypress 15.19.0 : 631 Mo | Playwright : 572 Mo | -59 Mo, comparaison indicative |
+| Suite E2E complete | 11,82 s | 9,21 s | -2,61 s, -22,1 % |
+| Tests E2E | 5 passes | 5 passes | Couverture conservee |
+
+Le cache Cypress global de 8,1 Go n'est pas compare au cache Playwright de 572 Mo : il contenait plusieurs versions et ne represente pas le cout d'une installation propre. De meme, `node_modules` reste domine par les dependances Angular et de build; la suppression des paquets Cypress reduit surtout le nombre de paquets, sans transformer proportionnellement l'empreinte totale.
+
+Ces chiffres sont une premiere comparaison locale, avec caches npm et navigateurs deja disponibles. La comparaison CI devra etre completee sur `ubuntu-latest` apres execution des workflows migres, en mesurant separement `npm ci`, l'installation de Chromium et la commande E2E.

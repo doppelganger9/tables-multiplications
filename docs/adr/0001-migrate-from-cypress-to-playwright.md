@@ -1,6 +1,6 @@
 # ADR 0001: Migrer les tests E2E de Cypress vers Playwright
 
-- Statut : Propose
+- Statut : Acceptee et mise en oeuvre
 - Date : 2026-09-12
 - Decideurs : Equipe projet
 

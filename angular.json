@@ -80,61 +80,13 @@
           "options": {
             "buildTarget": "tables-multiplications:build"
           }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "tables-multiplications:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "tables-multiplications:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false
-          }
-        },
-        "ct": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "tables-multiplications:serve",
-            "watch": true,
-            "headless": false,
-            "testingType": "component"
-          },
-          "configurations": {
-            "development": {
-              "devServerTarget": "tables-multiplications:serve:development"
-            }
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "tables-multiplications:serve",
-            "watch": false,
-            "headless": true
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "tables-multiplications:serve:production"
-            }
-          }
         }
       }
     }
   },
   "cli": {
     "analytics": "66918b72-84c9-4bfb-8cda-1513a58f0961",
-    "schematicCollections": [
-      "@cypress/schematic",
-      "@schematics/angular"
-    ]
+    "schematicCollections": ["@schematics/angular"]
   },
   "schematics": {
     "@schematics/angular:component": {
