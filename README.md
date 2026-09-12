@@ -25,6 +25,12 @@ Pour aller plus loin, il y a aussi ces scripts NPM:
 - `npm run start`: démarre l'application Angular (et non le index static qui inclut un web-component, petite subtilité).
 - `npm run build`: construit l'app Angular (il y a un `wc:build` dédié pour construire l'application en mode web-component).
 
+## Fonctionnalités
+
+- Le mode révision utilise une répétition espacée : les opérations peu connues ou échues sont davantage proposées, sans répéter immédiatement la même opération.
+- Les réponses et statistiques sont conservées dans le localStorage et consultables via l'action `Statistiques`.
+- Les statistiques peuvent être entièrement supprimées depuis cette page.
+
 ## Notes
 
 Dans VSCode, si vous rencontrez un problème de conflit dans le typage des assertions des tests entre Chai et Vitest, c'est qu'il faut réinstaller `local-cypress`, pour qu'il patche un fichier qui force des variables globales.
@@ -35,10 +41,9 @@ Voir [cet article](https://glebbahmutov.com/blog/local-cypress/), et vérifiez q
 
 - Faire des questions sur toutes les tables
 - synthèse vocale qui énonce la multiplication ("4 x 5") et le résultat (bravo/dommage + "4 x 5 = 20")
-- Algorithme de répétition espacée et améliorer le mode aléatoire pour éviter de poser les mêmes questions
 - améliorer sur mobile la saisie
 - transformer en app mobile avec Capacitor
-- stocker les statistiques dans storage
+- améliorer la synthèse des statistiques stockées localement
 
 ## Intégration en tant que MicroFrontEnd
 

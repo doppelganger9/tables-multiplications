@@ -21,6 +21,24 @@ test.describe('tables de multiplication', () => {
     await expect(page.locator('[data-e2e="btn-next-question"]')).toBeVisible();
   });
 
+  test('can inspect statistics for a selected table', async ({ page }) => {
+    await page.goto('/');
+
+    await page.locator('#select-action').selectOption({ label: 'Statistiques' });
+    await expect(page.getByRole('heading', { name: 'Statistiques' })).toBeVisible();
+
+    const tableRow = page.locator('tbody tr').nth(5);
+    await tableRow.click();
+
+    await expect(
+      page.getByRole('heading', { name: 'Détails de la table 6' })
+    ).toBeVisible();
+    await expect(page.locator('.graphique')).toHaveCount(2);
+    await expect(page.locator('.graphique').nth(0)).toBeVisible();
+    await expect(page.locator('.graphique').nth(1)).toBeVisible();
+    await expect(tableRow).toHaveClass(/selectionnee/);
+  });
+
   test('can change number to study', async ({ page }) => {
     await page.goto('/');
 

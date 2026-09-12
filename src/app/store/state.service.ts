@@ -26,6 +26,8 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class StateService {
+  private static readonly reponsesStorageKey =
+    'tables-multiplications.reponses.v1';
   private nombreChoisi$!: BehaviorSubject<number>;
   private actionChoisie$!: BehaviorSubject<Action>;
   private reponses$!: BehaviorSubject<Array<Reponse>>;
@@ -41,7 +43,9 @@ export class StateService {
     );
     this.actionChoisie$ = new BehaviorSubject<Action>('Afficher');
     //this.actionChoisie$ = new BehaviorSubject<Action>('Réviser');
-    this.reponses$ = new BehaviorSubject<Array<Reponse>>([] as Array<Reponse>);
+    this.reponses$ = new BehaviorSubject<Array<Reponse>>(
+      this.chargerReponses()
+    );
     this.questions$ = new BehaviorSubject<Array<Question>>(
       [] as Array<Question>
     );
@@ -103,8 +107,8 @@ export class StateService {
     const questions = this.questions$.getValue();
     const nombre = this.nombreChoisi$.getValue();
     // calcul et mise à jour du store
-    const operande = nombreAuHasardEntre1Et10();
-    // TODO aller plus loin que le hasard ? p.ex. basé sur les précédentes réponses ?
+    const derniereQuestion = questions[questions.length - 1];
+    const operande = this.choisirOperande(nombre, derniereQuestion);
     const questionGeneree = {
       nombre,
       operande,
@@ -138,16 +142,22 @@ export class StateService {
           reponseByNombre[reponse.nombre].push(reponse);
         });
 
-        const stats = new Array(10).fill({
-          max: 0,
-          min: Infinity,
-          moy: 0,
-          reponsesCorrectesSurLEnsemble: 0,
-          vuesSurLEnsemble: 0,
-          reponses: []
-        } as StatistiqueReponses);
+        const stats = Array.from(
+          { length: 10 },
+          () =>
+            ({
+              max: 0,
+              min: Infinity,
+              moy: 0,
+              ecartType: 0,
+              reponsesCorrectesSurLEnsemble: 0,
+              reponsesIncorrectesSurLEnsemble: 0,
+              vuesSurLEnsemble: 0,
+              reponses: []
+            }) as StatistiqueReponses
+        );
         stats.forEach((stat: StatistiqueReponses, index) => {
-          stat.reponses = reponseByNombre[index + 1];
+          stat.reponses = reponseByNombre[index + 1] ?? [];
           stat.max = stat.reponses.reduce(
             (prev, val) =>
               prev < val.tempsMillisecondes ? val.tempsMillisecondes : prev,
@@ -163,10 +173,19 @@ export class StateService {
               prev + val.tempsMillisecondes / array.length,
             stat.moy
           );
+          stat.ecartType = Math.sqrt(
+            stat.reponses.reduce(
+              (prev, val) =>
+                prev + Math.pow(val.tempsMillisecondes - stat.moy, 2),
+              0
+            ) / (stat.reponses.length || 1)
+          );
           stat.reponsesCorrectesSurLEnsemble = stat.reponses.reduce(
             (prev, curr) => prev + (curr.correcte ? 1 : 0),
             stat.reponsesCorrectesSurLEnsemble
           );
+          stat.reponsesIncorrectesSurLEnsemble =
+            stat.reponses.length - stat.reponsesCorrectesSurLEnsemble;
           stat.vuesSurLEnsemble = new Set(
             stat.reponses.map((rep) => rep.operande)
           ).size;
@@ -210,7 +229,13 @@ export class StateService {
       operande: lastQuestion.operande,
       reponse,
       correcte,
-      tempsMillisecondes
+      tempsMillisecondes,
+      repetitions: nombreDeRepetitions(reponses, lastQuestion),
+      prochaineRevision: prochaineDateDeRevision(
+        correcte,
+        nombreDeRepetitions(reponses, lastQuestion),
+        tempsMillisecondes
+      )
     } as Reponse;
 
     // mise à jour store interne
@@ -223,6 +248,7 @@ export class StateService {
     } // else : la question n'est pas terminée tant qu'on a pas bien répondu !
     // ... et on émet la réponse
     this.reponses$.next([...reponses, reponseCalculee]);
+    this.sauvegarderReponses(this.reponses$.getValue());
     // et aussi c'est une promesse qui retourne la valeur.
     console.log('réponse vérifiée', reponseCalculee);
     return of(reponseCalculee);
@@ -249,6 +275,120 @@ export class StateService {
         .finally(() => subscriber.complete());
     });
   }
+
+  // ACTION
+  reinitialiserStatistiques(): RxJsObservable<void> {
+    this.reponses$.next([]);
+    this.sauvegarderReponses([]);
+    return of(undefined);
+  }
+
+  private choisirOperande(
+    nombre: number,
+    derniereQuestion: Question | undefined
+  ): number {
+    const maintenant = Date.now();
+    const operandes = Array.from({ length: 10 }, (_, index) => index + 1);
+    const candidats = operandes.filter(
+      (operande) =>
+        !derniereQuestion ||
+        derniereQuestion.nombre !== nombre ||
+        derniereQuestion.operande !== operande
+    );
+    const reponses = this.reponses$
+      .getValue()
+      .filter((reponse) => reponse.nombre === nombre);
+    const priorites = candidats.map((operande) => {
+      const historique = reponses.filter(
+        (reponse) => reponse.operande === operande
+      );
+      const derniereReponse = historique[historique.length - 1];
+      const estEchue =
+        !derniereReponse ||
+        (derniereReponse.prochaineRevision ?? 0) <= maintenant;
+      const nombreErreurs = historique.filter(
+        (reponse) => !reponse.correcte
+      ).length;
+      const tempsMoyen =
+        historique.reduce(
+          (total, reponse) => total + reponse.tempsMillisecondes,
+          0
+        ) / (historique.length || 1);
+
+      return {
+        operande,
+        estEchue,
+        poids: !derniereReponse
+          ? 3
+          : 1 + nombreErreurs * 4 + (tempsMoyen >= 3000 ? 3 : 0)
+      };
+    });
+
+    const aReviser = priorites.filter((candidat) => candidat.estEchue);
+    const pool = aReviser.length > 0 ? aReviser : priorites;
+    const total = pool.reduce((somme, candidat) => somme + candidat.poids, 0);
+    let tirage = Math.random() * total;
+    return (
+      pool.find((candidat) => {
+        tirage -= candidat.poids;
+        return tirage < 0;
+      })?.operande ??
+      candidats[0] ??
+      nombreAuHasardEntre1Et10()
+    );
+  }
+
+  private chargerReponses(): Array<Reponse> {
+    try {
+      const valeur = localStorage.getItem(StateService.reponsesStorageKey);
+      return valeur ? (JSON.parse(valeur) as Array<Reponse>) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  private sauvegarderReponses(reponses: Array<Reponse>): void {
+    try {
+      localStorage.setItem(
+        StateService.reponsesStorageKey,
+        JSON.stringify(reponses)
+      );
+    } catch {
+      // Le stockage peut être indisponible en mode privé ou hors navigateur.
+    }
+  }
+}
+
+function nombreDeRepetitions(
+  reponses: Array<Reponse>,
+  question: Question
+): number {
+  const historique = reponses.filter(
+    (reponse) =>
+      reponse.nombre === question.nombre &&
+      reponse.operande === question.operande
+  );
+  const derniereReponse = historique[historique.length - 1];
+  return derniereReponse?.correcte ? (derniereReponse.repetitions ?? 0) + 1 : 0;
+}
+
+function prochaineDateDeRevision(
+  correcte: boolean,
+  repetitions: number,
+  tempsMillisecondes: number
+): number {
+  if (!correcte) {
+    return Date.now();
+  }
+  if (tempsMillisecondes >= 3000) {
+    return Date.now();
+  }
+  const intervalleEnJours = Math.min(
+    30,
+    Math.pow(2, Math.max(0, repetitions - 1)) *
+      (tempsMillisecondes <= 1000 ? 2 : 1)
+  );
+  return Date.now() + intervalleEnJours * 24 * 60 * 60 * 1000;
 }
 
 function finirLaQuestion(question: Question): Question {

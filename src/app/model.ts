@@ -1,11 +1,13 @@
-export type Action = 'Réviser' | 'Afficher';
+export type Action = 'Réviser' | 'Afficher' | 'Statistiques';
 
 export interface StatistiqueReponses {
   min: number;
   max: number;
   moy: number;
+  ecartType: number;
   vuesSurLEnsemble: number;
   reponsesCorrectesSurLEnsemble: number;
+  reponsesIncorrectesSurLEnsemble: number;
   reponses: Array<Reponse>;
 }
 
@@ -16,6 +18,8 @@ export interface Reponse {
   nombre: number;
   operande: number;
   reponse: number;
+  repetitions?: number;
+  prochaineRevision?: number;
 }
 
 export interface Question {

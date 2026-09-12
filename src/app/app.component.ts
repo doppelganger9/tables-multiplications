@@ -15,6 +15,7 @@ import { MonFooterComponent } from './mon-footer/mon-footer.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AsyncPipe } from '@angular/common';
+import { StatistiquesComponent } from './statistiques/statistiques.component';
 
 /**
  * Gère l'app dans sa globalité en propageant aux composant fils et
@@ -32,6 +33,7 @@ import { AsyncPipe } from '@angular/common';
     RevisionTableComponent,
     MenuComponent,
     MonFooterComponent,
+    StatistiquesComponent,
     AsyncPipe
   ],
   providers: [
