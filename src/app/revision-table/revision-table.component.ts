@@ -6,7 +6,6 @@ import {
   inject
 } from '@angular/core';
 import {
-  EMPTY,
   Observable as RxJsObservable,
   combineLatest,
   concat,
@@ -96,40 +95,84 @@ export class RevisionTableComponent implements OnInit {
       );
   }
 
-  clicQuestionSuivante(): RxJsObservable<Question> {
+  clicQuestionSuivante(): void {
     // remise à vide du champs réponse
     this.reponse = '';
     // focus sur le champs réponse
+    this.focusReponse();
+    this.stateService.generateNewQuestion().subscribe({
+      next: (question) => {
+        this.prononcerQuestion(question.nombre, question.operande);
+      }
+    });
+  }
+
+  clicValiderReponse(): void {
+    const total = 0 + Number(this.reponse);
+
+    this.stateService.soumettreReponse(total).subscribe({
+      next: (reponse) => {
+        const questionSuivante = reponse.correcte
+          ? () => {
+              this.stateService.generateNewQuestion().subscribe({
+                next: (question) => {
+                  this.prononcerQuestion(question.nombre, question.operande);
+                }
+              });
+            }
+          : () => {
+              this.prononcerQuestion(reponse.nombre, reponse.operande);
+            };
+        this.prononcerReponse(
+          reponse.nombre,
+          reponse.operande,
+          reponse.correcte,
+          questionSuivante
+        );
+        // remise à vide du champs réponse
+        this.reponse = '';
+      }
+    });
+  }
+
+  private prononcerReponse(
+    nombre: number,
+    operande: number,
+    correcte: boolean,
+    ensuite?: () => void
+  ): void {
+    const texte = correcte ? 'Bravo' : 'Dommage, essaye encore !';
+    this.prononcer(texte, ensuite);
+  }
+
+  private prononcerQuestion(nombre: number, operande: number): void {
+    this.focusReponse();
+    this.prononcer(`${nombre} x ${operande}`);
+  }
+
+  private focusReponse(): void {
     setTimeout(() => {
       const reponseInput = document.getElementById('reponse');
       if (reponseInput) {
         reponseInput.focus();
       }
     }, 0);
-    return this.stateService.generateNewQuestion();
   }
 
-  clicValiderReponse(): RxJsObservable<Question> {
-    const total = 0 + Number(this.reponse);
-    // focus sur le champs réponse
-    setTimeout(() => {
-      const btnNextQuestion = document.getElementById('btn-next-question');
-      if (btnNextQuestion) {
-        btnNextQuestion.focus();
-      }
-    }, 0);
+  private prononcer(texte: string, ensuite?: () => void): void {
+    if (
+      typeof window === 'undefined' ||
+      !window.speechSynthesis ||
+      !window.SpeechSynthesisUtterance
+    ) {
+      ensuite?.();
+      return;
+    }
 
-    return this.stateService.soumettreReponse(total).pipe(
-      switchMap((reponse) => {
-        // remise à vide du champs réponse
-        this.reponse = '';
-        // si reponse OK / Question finie, alors on demande la prochaine question.
-        if (reponse.correcte) {
-          return this.stateService.generateNewQuestion();
-        } else {
-          return EMPTY;
-        }
-      })
-    );
+    const utterance = new window.SpeechSynthesisUtterance(texte);
+    utterance.lang = 'fr-FR';
+    utterance.onend = () => ensuite?.();
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
   }
 }
