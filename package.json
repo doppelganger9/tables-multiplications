@@ -59,7 +59,7 @@
     "@typescript-eslint/parser": "8.65.0",
     "@typescript-eslint/utils": "8.65.0",
     "@vitest/coverage-v8": "4.1.11",
-    "cypress": "15.19.0",
+    "cypress": "15.21.1",
     "eslint": "^10.0.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.6",
