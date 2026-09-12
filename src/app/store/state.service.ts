@@ -231,7 +231,10 @@ export class StateService {
   // SELECTION
   getVersion(): RxJsObservable<VersionData> {
     return new RxJsObservable((subscriber) => {
-      Promise.all([import('package.json'), import('src/git-version.json')])
+      Promise.all([
+        import('../../../package.json'),
+        import('../../git-version.json')
+      ])
         .then(([packageJson, gitVersionJson]) => {
           const lastCommitTime = gitVersionJson?.lastCommitTime;
           const time = Date.parse(lastCommitTime);

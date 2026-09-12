@@ -4,9 +4,15 @@ import { registerLocaleData } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import localeFr from '@angular/common/locales/fr';
 import { TablesMultiplicationsAppComponent } from './app/app.component';
-import { LOCALE_ID } from '@angular/core';
+import { ApplicationRef, LOCALE_ID } from '@angular/core';
 import { StateService } from './app/store/state.service';
 import { createCustomElement } from '@angular/elements';
+
+declare global {
+  interface Window {
+    ngRef?: ApplicationRef;
+  }
+}
 
 registerLocaleData(localeFr);
 
@@ -30,9 +36,9 @@ bootstrapApplication(TablesMultiplicationsAppComponent, {
     customElements.define('app-tables-multiplications', customElement);
 
     // Hot reload cleanup
-    if (window['ngRef']) {
-      window['ngRef'].destroy();
+    if (window.ngRef) {
+      window.ngRef.destroy();
     }
-    window['ngRef'] = appRef;
+    window.ngRef = appRef;
   })
   .catch((err) => console.error(err));
