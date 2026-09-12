@@ -5,6 +5,10 @@
     [nombre$]="nombreChoisi$"
   ></app-table-multiplication>
 } @else {
-  <app-revision-table [nombre$]="nombreChoisi$"></app-revision-table>
+  @if ((actionChoisie$ | async) === 'Réviser') {
+    <app-revision-table [nombre$]="nombreChoisi$"></app-revision-table>
+  } @else {
+    <app-statistiques></app-statistiques>
+  }
 }
 <app-footer></app-footer>

@@ -1,0 +1,146 @@
+<article>
+  <header>
+    <h2>Statistiques</h2>
+    <button type="button" (click)="reinitialiser()">
+      Remettre les statistiques à zéro
+    </button>
+  </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Table</th>
+        <th>Opérations vues</th>
+        <th>Réponses correctes</th>
+        <th>Temps moyen</th>
+        <th>Meilleur temps</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (statistique of statistiques$ | async; track $index) {
+        <tr
+          tabindex="0"
+          [class.selectionnee]="$index + 1 === tableSelectionnee"
+          (click)="selectionnerTable($index + 1)"
+          (keydown.enter)="selectionnerTable($index + 1)"
+          (keydown.space)="selectionnerTable($index + 1)"
+          [attr.aria-label]="'Afficher les détails de la table ' + ($index + 1)"
+        >
+          <th scope="row">{{ $index + 1 }}</th>
+          <td>{{ statistique.vuesSurLEnsemble }}/10</td>
+          <td>
+            {{ statistique.reponsesCorrectesSurLEnsemble }}/{{
+              statistique.reponses.length
+            }}
+          </td>
+          <td>
+            @if (statistique.reponses.length > 0) {
+              {{ statistique.moy | number: '1.0-0' }} ms
+            } @else {
+              -
+            }
+          </td>
+          <td>
+            @if (statistique.reponses.length > 0) {
+              {{ statistique.min | number: '1.0-0' }} ms
+            } @else {
+              -
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  @if (statistiqueSelectionnee$ | async; as statistique) {
+    <section class="details">
+      <h3>Détails de la table {{ tableSelectionnee }}</h3>
+      <div class="indicateurs">
+        <span
+          >Bonnes réponses
+          <strong>{{ statistique.reponsesCorrectesSurLEnsemble }}</strong></span
+        >
+        <span
+          >Mauvaises réponses
+          <strong>{{
+            statistique.reponsesIncorrectesSurLEnsemble
+          }}</strong></span
+        >
+        <span
+          >Temps moyen
+          <strong>{{ statistique.moy | number: '1.0-0' }} ms</strong></span
+        >
+        <span
+          >Écart type
+          <strong
+            >{{ statistique.ecartType | number: '1.0-0' }} ms</strong
+          ></span
+        >
+      </div>
+
+      <section class="graphique-section">
+        <h4>Réponses par opération</h4>
+        <div
+          class="graphique"
+          role="img"
+          [attr.aria-label]="
+            'Réponses bonnes et mauvaises pour la table ' + tableSelectionnee
+          "
+        >
+          @for (operande of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track operande) {
+            <div class="colonne">
+              <div class="barres">
+                <span
+                  class="barre correcte"
+                  [style.height.%]="hauteurBarre(statistique, operande, true)"
+                  [attr.title]="
+                    nombreDeReponses(statistique, operande, true) + ' bonne(s)'
+                  "
+                ></span>
+                <span
+                  class="barre incorrecte"
+                  [style.height.%]="hauteurBarre(statistique, operande, false)"
+                  [attr.title]="
+                    nombreDeReponses(statistique, operande, false) +
+                    ' mauvaise(s)'
+                  "
+                ></span>
+              </div>
+              <span>{{ operande }}</span>
+            </div>
+          }
+        </div>
+        <div class="legende">
+          <span><i class="pastille correcte"></i> Bonne réponse</span>
+          <span><i class="pastille incorrecte"></i> Mauvaise réponse</span>
+        </div>
+      </section>
+
+      <section class="graphique-section">
+        <h4>Temps moyen par opération</h4>
+        <div
+          class="graphique"
+          role="img"
+          [attr.aria-label]="
+            'Temps moyen par opération pour la table ' + tableSelectionnee
+          "
+        >
+          @for (operande of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track operande) {
+            <div class="colonne">
+              <div class="barres">
+                <span
+                  class="barre temps"
+                  [style.height.%]="hauteurBarreTemps(statistique, operande)"
+                  [attr.title]="
+                    (tempsMoyenPourOperande(statistique, operande)
+                      | number: '1.0-0') + ' ms en moyenne'
+                  "
+                ></span>
+              </div>
+              <span>{{ operande }}</span>
+            </div>
+          }
+        </div>
+      </section>
+    </section>
+  }
+</article>

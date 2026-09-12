@@ -17,7 +17,7 @@ interface TMOption<T> {
 
 /**
  * Permet de choisir un nombre (1-9),
- * et une action (afficher, réviser)
+ * et une action (afficher, réviser, statistiques)
  */
 @Component({
   selector: 'app-menu',
@@ -74,7 +74,7 @@ function toutesLesOptionsDeChoixDeNombre(
 function toutesLesOptionsDeChoixDAction(
   actionActuelle: Action
 ): Array<TMOption<Action>> {
-  return (['Afficher', 'Réviser'] as Array<Action>).map(
+  return (['Afficher', 'Réviser', 'Statistiques'] as Array<Action>).map(
     (action) =>
       ({
         selected: action === actionActuelle,
