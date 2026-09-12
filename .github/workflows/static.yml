@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,7 +17,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -38,6 +38,8 @@ jobs:
           cache: 'npm'
       - name: Clean Install deps
         run: npm ci
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
       - name: Build Angular Element Web Component
         run: npm run wc:build
       - name: Check Linting
@@ -58,6 +60,13 @@ jobs:
         run: npm run test:e2e
         env:
           CI: true
+      - name: Upload Playwright report
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
       - name: copy static assets
         run: npm run wc:copy-static
       - name: Change BASE HREF
