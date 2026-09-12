@@ -11,6 +11,7 @@
     "ng": "ng",
     "prestart": "node ./build/git-info.mjs",
     "start": "ng serve",
+    "e2e:server": "ng serve --host 127.0.0.1 --port 4200",
     "prebuild": "node ./build/git-info.mjs",
     "build": "ng build",
     "test": "TZ=UTC ng test",

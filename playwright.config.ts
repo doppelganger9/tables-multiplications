@@ -18,9 +18,9 @@ export default defineConfig({
     ...devices['Desktop Chrome']
   },
   webServer: {
-    command: 'npm start -- --port 4200',
+    command: 'npm run e2e:server',
     url: 'http://127.0.0.1:4200',
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000
+    timeout: 300_000
   }
 });
