@@ -28,10 +28,10 @@ interface TMOption<T> {
   imports: [AsyncPipe]
 })
 export class MenuComponent implements OnInit {
-  nombreChoisi$: RxJsObservable<number>;
-  actionChoisie$: RxJsObservable<Action>;
-  optionNombres$: RxJsObservable<Array<TMOption<number>>>;
-  optionActions$: RxJsObservable<Array<TMOption<Action>>>;
+  nombreChoisi$!: RxJsObservable<number>;
+  actionChoisie$!: RxJsObservable<Action>;
+  optionNombres$!: RxJsObservable<Array<TMOption<number>>>;
+  optionActions$!: RxJsObservable<Array<TMOption<Action>>>;
 
   private readonly stateService: StateService = inject(StateService);
 

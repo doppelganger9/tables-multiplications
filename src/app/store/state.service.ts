@@ -26,10 +26,10 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class StateService {
-  private nombreChoisi$: BehaviorSubject<number>;
-  private actionChoisie$: BehaviorSubject<Action>;
-  private reponses$: BehaviorSubject<Array<Reponse>>;
-  private questions$: BehaviorSubject<Array<Question>>;
+  private nombreChoisi$!: BehaviorSubject<number>;
+  private actionChoisie$!: BehaviorSubject<Action>;
+  private reponses$!: BehaviorSubject<Array<Reponse>>;
+  private questions$!: BehaviorSubject<Array<Question>>;
 
   constructor() {
     this.setupInitialState();
@@ -76,7 +76,7 @@ export class StateService {
   }
 
   // SELECTION
-  getLastQuestion(): RxJsObservable<Question> {
+  getLastQuestion(): RxJsObservable<Question | null> {
     // ne pas utiliser last ou autre car on emet la liste des question et on aurait que la derniere liste de questions
     // ce qu'on veut c'est la dernière question lorsque une nouvelle liste de question est émise.
     return this.questions$.asObservable().pipe(
@@ -130,7 +130,7 @@ export class StateService {
   > {
     return this.reponses$.pipe(
       map((reponses) => {
-        const reponseByNombre = {};
+        const reponseByNombre: Record<number, Array<Reponse>> = {};
         reponses.forEach((reponse) => {
           if (!reponseByNombre[reponse.nombre]) {
             reponseByNombre[reponse.nombre] = [];
@@ -197,7 +197,7 @@ export class StateService {
     // vérifier si l'action est possible !! La question actuelle ne doit pas etre finie
     if (lastQuestion.finie) {
       console.warn('tentative de réponse sur une question finie !');
-      return;
+      return EMPTY;
     }
 
     // calculs
