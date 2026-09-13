@@ -1,14 +1,24 @@
-<h1>Les tables de multiplication</h1>
-<app-menu></app-menu>
-@if (modeAffichage$ | async) {
-  <app-table-multiplication
-    [nombre$]="nombreChoisi$"
-  ></app-table-multiplication>
-} @else {
-  @if ((actionChoisie$ | async) === 'Réviser') {
-    <app-revision-table [nombre$]="nombreChoisi$"></app-revision-table>
-  } @else {
-    <app-statistiques></app-statistiques>
-  }
-}
+<main class="app-shell">
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Apprendre en jouant</p>
+      <h1>Les tables de multiplication</h1>
+    </div>
+    <app-menu></app-menu>
+  </header>
+
+  <section class="app-content">
+    @if (modeAffichage$ | async) {
+      <app-table-multiplication
+        [nombre$]="nombreChoisi$"
+      ></app-table-multiplication>
+    } @else {
+      @if ((actionChoisie$ | async) === 'Réviser') {
+        <app-revision-table [nombre$]="nombreChoisi$"></app-revision-table>
+      } @else {
+        <app-statistiques></app-statistiques>
+      }
+    }
+  </section>
+</main>
 <app-footer></app-footer>

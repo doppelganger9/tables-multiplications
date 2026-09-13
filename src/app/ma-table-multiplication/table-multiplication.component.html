@@ -1,4 +1,4 @@
-<article>
+<article [style.--table-hue]="getHue(nombre$ | async)">
   <table role="grid">
     <thead>
       <tr>
@@ -10,7 +10,7 @@
       @for (n of tableMultiplication$ | async; track n; let i = $index) {
         <tr>
           <td>{{ i + 1 }} x {{ nombre$ | async }}</td>
-          <td>{{ n }}</td>
+          <td class="resultat">{{ n }}</td>
         </tr>
       }
     </tbody>
