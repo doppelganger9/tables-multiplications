@@ -26,6 +26,10 @@ export class TableMultiplicationComponent implements OnChanges {
       switchMap((nombre) => of(calculerTable(nombre)))
     );
   }
+
+  getHue(nombre: number | null): number {
+    return ((nombre ?? 1) * 31) % 360;
+  }
 }
 
 function calculerTable(nombre: number): Array<number> {

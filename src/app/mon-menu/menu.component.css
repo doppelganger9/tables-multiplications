@@ -1,12 +1,58 @@
 :host {
+  display: block;
   width: fit-content;
-  margin: auto;
-  display: flex;
-  flex-direction: row;
+  box-sizing: border-box;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #d8e0e8;
+  border-radius: 0.8rem;
+  background: rgb(255 255 255 / 80%);
+  box-shadow: 0 0.4rem 1.2rem rgb(34 54 74 / 8%);
+  color: #536477;
+  font-size: 0.92rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+label {
+  display: inline;
+  margin: 0;
 }
 
 select {
-  width: auto;
-  padding: 0 35px 0 10px;
-  margin: 0 10px;
+  display: inline-block;
+  width: 9rem;
+  min-width: 0;
+  margin: 0 0.35rem;
+  background-color: #f7fafc;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+#select-nombre {
+  width: 5rem;
+}
+
+hr {
+  display: none;
+}
+
+@media (width <= 700px) {
+  :host {
+    width: 100%;
+    padding: 0.45rem;
+    font-size: 0.78rem;
+  }
+
+  select {
+    margin: 0 0.15rem;
+    padding-right: 1.6rem;
+  }
+
+  #select-action {
+    width: 7.5rem;
+  }
+
+  #select-nombre {
+    width: 4.5rem;
+  }
 }
